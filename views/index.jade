@@ -3,26 +3,5 @@ html(lang="en")
 head
   meta(charset="UTF-8")
   title Document
-  style(type="text/css").
-    .field {
-      text-align: center;
-    }
-    
-    .field label {
-      display: inline-block;
-      padding-right: 10px;
-      width: 100px;
-      text-align: right;
-      margin-bottom: 10px;
-    }
 body
-  form(action="/", method="POST")
-    .field
-      label 用户名
-      input(type="text", name="name")
-    .field
-      label 密码
-      input(type="text", name="password")
-    .field
-      button(type="submit")
-        | submit
+  p=title
