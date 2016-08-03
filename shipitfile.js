@@ -1,19 +1,26 @@
 
 const deploy = require('shipit-deploy');
+const npm = require('shipit-npm');
 
 module.exports = shipit => {
   deploy(shipit);
+  npm(shipit);
+
   shipit.initConfig({
     default: {
-      workspace: '/tmp/github-monitor',
+      workspace: '/tmp/zxtool',
       deployTo: '~/zxtool',
-      repositoryUrl: 'git@github.com:Cedcn/lazyload-qiniu.git',
+      repositoryUrl: 'git@git.coding.net:cedcn/zxtool.git',
       ignores: ['.git', 'node_modules'],
-      keepReleases: 2,
+      keepReleases: 3,
       shallowClone: true,
     },
     staging: {
       servers: 'www@cedcn.com',
+      npm: {
+        remote: true,
+        installFlags: ['--production'],
+      },
     },
   });
 
