@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 html(lang="en")
-head
-  meta(charset="UTF-8")
-  title Document
-body
-  p=title
+  head
+    meta(charset="UTF-8")
+    title Document
+    if isDev
+      script(src="/reload/reload.js")
+  body
+    p=title
