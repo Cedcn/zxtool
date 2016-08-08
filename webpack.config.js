@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 // const process = require('process');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 const config = {
   context: __dirname,
@@ -26,11 +27,14 @@ const config = {
       {test: /\.jsx?$/, loader: 'babel-loader', exclude: /node_modules/},
       {test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=25000'},
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules')
+        test: /\.scss$|\.css$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css?minimize&modules!postcss!sass')
       },
       {test: /\.(ttf|eot|svg|mp4|woff(2)?)(\?[a-z0-9]+)?$/, loader: 'file-loader'}
     ]
+  },
+  postcss: () => {
+    return [ autoprefixer ];
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('common.js'),
