@@ -1,8 +1,8 @@
 const { EventEmitter } = require('events');
 const validator = require('validator');
 
-const { getUserByLoginName, getUsersByQuery, createEntity } = require('../../proxy/account');
-const { tohash } = require('../../common/utils');
+const { getUsersByQuery, createEntity } = require('../../proxy/account');
+const { tohash } = require('../../utils/tools');
 
 exports.show = (req, res) => {
   res.render('users/signup');

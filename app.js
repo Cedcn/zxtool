@@ -11,6 +11,18 @@ const morgan = require('morgan');
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs/access.log'), { flags: 'a' });
 
 const { authUser } = require('./middlewares/auth');
+
+global.isDev = app.locals.isDev = app.get('env') === 'development';
+
+// dev build
+if (isDev) {
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpack = require('webpack');
+  const webpackConfig = require('./webpack.config');
+
+  app.use(webpackDevMiddleware(webpack(webpackConfig), {}));
+}
+
 // connect db
 const mongoose = require('mongoose');
 global.db = mongoose.connect('mongodb://localhost/zxtool');

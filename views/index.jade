@@ -3,9 +3,9 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     title Document
-    if isDev
-      script(src="/reload/reload.js")
   body
-    p=title
-    p=current_user
-    a(href="/login") 登陆
+    section#app
+    if isDev
+      script(src="/common.js")
+      script(src="/app.js")
+      script(src="/reload/reload.js")

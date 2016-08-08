@@ -2,7 +2,7 @@ const { EventEmitter } = require('events');
 const validator = require('validator');
 
 const { getUserByLoginName } = require('../../proxy/account');
-const { compare } = require('../../common/utils');
+const { compare } = require('../../utils/tools');
 
 exports.show = (req, res) => {
   res.render('users/login');
