@@ -12,7 +12,6 @@ const Home = (nextState, callback) => {
   }, 'index');
 };
 
-
 const MainRoute = (
   <Route path="/" component={AppWrapper}>
     <IndexRoute getComponent={Home} />

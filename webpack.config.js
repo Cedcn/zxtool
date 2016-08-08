@@ -3,11 +3,12 @@ const webpack = require('webpack');
 // const process = require('process');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
 const config = {
   context: __dirname,
   entry: {
-    app: './client/App.jsx',
+    app: ['./client/App.jsx', hotMiddlewareScript],
   },
   output: {
     path: path.resolve(__dirname, './public/'),
@@ -38,7 +39,10 @@ const config = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('common.js'),
-    new ExtractTextPlugin("[name].css")
+    new ExtractTextPlugin("[name].css"),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ],
 };
 

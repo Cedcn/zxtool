@@ -17,10 +17,16 @@ global.isDev = app.locals.isDev = app.get('env') === 'development';
 // dev build
 if (isDev) {
   const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
   const webpack = require('webpack');
   const webpackConfig = require('./webpack.config');
-
-  app.use(webpackDevMiddleware(webpack(webpackConfig), {}));
+  const compiler = webpack(webpackConfig);
+  app.use(webpackDevMiddleware(compiler, {
+    stats: {
+      colors: true,
+    },
+  }));
+  app.use(webpackHotMiddleware(compiler));
 }
 
 // connect db
