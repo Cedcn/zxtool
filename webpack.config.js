@@ -17,32 +17,36 @@ const config = {
   },
   resolve: {
     root: [
-      path.join(__dirname, '/')
+      path.join(__dirname, '/'),
     ],
     extensions: ['', '.js', '.jsx'],
   },
   module: {
     noParse: [],
     loaders: [
-      {test: /\.jsx?$/, loader: 'babel-loader', exclude: /node_modules/},
-      {test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=25000'},
+      { test: /\.jsx?$/, loader: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=25000' },
       {
         test: /\.scss|\.css$/,
         loader: 'style!css?minimize&modules!postcss!sass',
         // loader: ExtractTextPlugin.extract('style-loader', 'css?minimize&modules!postcss!sass')
       },
-      {test: /\.(ttf|eot|svg|mp4|woff(2)?)(\?[a-z0-9]+)?$/, loader: 'file-loader'}
-    ]
+      { test: /\.(ttf|eot|svg|mp4|woff(2)?)(\?[a-z0-9]+)?$/, loader: 'file-loader' },
+    ],
   },
   postcss: () => {
-    return [ autoprefixer ];
+    return [autoprefixer];
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('common.js'),
     // new ExtractTextPlugin("[name].css"),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('./config/manifest.json'),
+    }),
   ],
 };
 
@@ -50,15 +54,15 @@ if (process.env.NODE_ENV === 'production') {
   config.plugins.concat([
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings: false
-      }
-    })
-  ])
+        warnings: false,
+      },
+    }),
+  ]);
 }
 
 module.exports = config;
