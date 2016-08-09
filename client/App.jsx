@@ -12,6 +12,7 @@ import reducers from './reducers';
 import * as ActionCreates from './actions/ActionCreates';
 import routes from './route';
 
+import normalize from 'normalize.css';
 
 const middlewares = process.env.NODE_ENV === 'production' ?
   applyMiddleware(thunk) : applyMiddleware(thunk, createLogger());

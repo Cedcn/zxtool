@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import Modal from './Modal';
 
+
 class AppWrapper extends Component {
   componentDidMount() {
     this.context.router.listen(() => {
