@@ -1,0 +1,11 @@
+{
+  "name": "test",
+  "id": "123123",
+  "modules": [{
+    "moduleID": "linkblock",
+    "values": {
+      "width": "200",
+      "height": "200",
+    }
+  }]
+}

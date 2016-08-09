@@ -1,0 +1,33 @@
+{
+  "name": "linkblock",
+  "uid": 1,
+  "description": "这是个热区",
+  "parameters": [{
+    "title": "元素的组件与属性",
+    "unfold": true,
+    "section": [
+      {
+        "label": "宽度",
+        "name": "width",
+        "type": "number",
+        "per" : "50%"
+      },
+      {
+        "label": "高度",
+        "name": "height",
+        "type": "number",
+        "per" : "50%"
+      }
+    ]
+  }, {
+    "title": "元素的类别",
+    "unfold": true,
+    "section": [
+      {
+        "label": "分类",
+        "name": "classify",
+        "type": "text"
+      }
+    ]
+  }]
+}

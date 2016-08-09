@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { Button } from 'antd';
 
-import style from './index.scss';
+import S_S_ from './index.scss';
+import EditPanel from '../components/panel/EditPanel';
+
+import data from '../components/modules/linkblock/module.json';
+import Module from '../components/modules/linkblock/Module';
 
 class Home extends Component {
   render() {
     return (
-      <div className={`page ${style.page_home}`}>
-        <div className={style.name}>
-          Cedcn
-        </div>
-        <Button type="primary">Primary</Button>
+      <div className={`page ${S_S_.page_home}`}>
+        <Module />
+        <EditPanel data={data} />
       </div>
     );
   }

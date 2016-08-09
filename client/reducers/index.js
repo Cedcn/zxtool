@@ -24,4 +24,5 @@ const rootReducer = combineReducers({
   modal: modalSwitch,
 });
 
+
 export default rootReducer;
