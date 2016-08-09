@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import style from './index.scss';
+import { Button } from 'antd';
 
+import style from './index.scss';
 
 class Home extends Component {
   render() {
@@ -9,6 +10,7 @@ class Home extends Component {
         <div className={style.name}>
           Cedcn
         </div>
+        <Button type="primary">Primary</Button>
       </div>
     );
   }

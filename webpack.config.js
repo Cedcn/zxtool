@@ -28,8 +28,14 @@ const config = {
       { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=25000' },
       {
         test: /\.scss|\.css$/,
-        loader: 'style!css?minimize&modules!postcss!sass',
-        // loader: ExtractTextPlugin.extract('style-loader', 'css?minimize&modules!postcss!sass')
+        loader: 'style!css?modules&localIdentName=[local]__[hash:base64:10]!postcss!sass',
+        exclude: /node_modules/,
+        // loader: ExtractTextPlugin.extract('style-loader', 'css?minimize&modules&localIdentName=[local]__[hash:base64:10]!postcss!sass')
+      },
+      {
+        test: /\.scss|\.css$/,
+        loader: 'style!css!postcss!sass',
+        include: /node_modules/,
       },
       { test: /\.(ttf|eot|svg|mp4|woff(2)?)(\?[a-z0-9]+)?$/, loader: 'file-loader' },
     ],
