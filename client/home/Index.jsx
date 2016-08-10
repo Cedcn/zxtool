@@ -5,12 +5,18 @@ import EditPanel from '../components/panel/EditPanel';
 
 import data from '../components/modules/linkblock/module.json';
 import Module from '../components/modules/linkblock/Module';
+import Dragresize from '../common/Dragresize';
 
 class Home extends Component {
   render() {
     return (
       <div className={`page ${S_S_.page_home}`}>
-        <Module />
+        <Dragresize>
+          <Module />
+        </Dragresize>
+        <Dragresize>
+          <Module />
+        </Dragresize>
         <EditPanel data={data} />
       </div>
     );
