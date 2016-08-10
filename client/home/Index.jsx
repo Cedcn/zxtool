@@ -14,9 +14,6 @@ class Home extends Component {
         <Dragresize>
           <Module />
         </Dragresize>
-        <Dragresize>
-          <Module />
-        </Dragresize>
         <EditPanel data={data} />
       </div>
     );
