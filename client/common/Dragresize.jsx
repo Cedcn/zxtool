@@ -7,7 +7,7 @@ class Dragresize extends Component {
     this.state = {
       elmX: 10,
       elmY: 20,
-      elmW: 200,
+      elmW: 300,
       elmH: 200,
       isResize: true,
       isDrag: false,
@@ -45,8 +45,8 @@ class Dragresize extends Component {
       document.removeEventListener('mousemove', this.moveResize);
     };
 
-    let m = 0;
-    let n = 0;
+    let x = 0;
+    let y = 0;
     let w = 0;
     let h = 0;
     let seat = '';
@@ -59,62 +59,57 @@ class Dragresize extends Component {
         document.addEventListener('mousemove', this.moveResize);
         w = this.state.elmW;
         h = this.state.elmH;
-        m = this.state.elmX;
-        n = this.state.elmY;
+        x = this.state.elmX;
+        y = this.state.elmY;
       };
+    };
+
+    const getRealWidth = value => {
+      return value > minWidth ? value : minWidth;
+    };
+
+    const getRealHeight = value => {
+      return value > minHeight ? value : minHeight;
+    };
+
+    const getRealX = value => {
+      return value < (x + w) - minWidth ? value : (x + w) - minWidth;
+    };
+
+    const getRealY = value => {
+      return value < (y + h) - minHeight ? value : (y + h) - minHeight;
     };
 
     this.moveResize = e => {
       e.preventDefault();
-
-      const getRealWidth = value => {
-        return value > minWidth ? value : minWidth;
-      };
-
-      const getRealHeight = value => {
-        return value > minHeight ? value : minHeight;
-      };
-
-      const getRealX = value => {
-        return value < (m + w) - minWidth ? value : (m + w) - minWidth;
-      };
-
-      const getRealY = value => {
-        return value < (n + h) - minHeight ? value : (n + h) - minHeight;
-      };
-
+      const ratio = h / w;
+      let tempW = w, tempH = h, tempX = x, tempY = y;
       // set attribute of this dragbox
       if (seat === 'br') {
-        this.setState({
-          elmW: getRealWidth(e.pageX - m),
-          elmH: !isRatio ? getRealHeight(e.pageY - n) : getRealWidth(e.pageX - m) * h / w,
-        });
+        tempW = getRealWidth(e.pageX - x);
+        tempH = !isRatio ? getRealHeight(e.pageY - y) : tempW * ratio;
       }
 
       if (seat === 'tl') {
-        this.setState({
-          elmX: getRealX(e.pageX),
-          elmY: getRealY(e.pageY),
-          elmW: getRealWidth((w + m) - e.pageX),
-          elmH: getRealHeight((h + n) - e.pageY),
-        });
+        tempW = getRealWidth((w + x) - e.pageX);
+        tempH = !isRatio ? getRealHeight((h + y) - e.pageY) : tempW * ratio;
+        tempX = getRealX(e.pageX);
+        tempY = !isRatio ? getRealY(e.pageY) : y + (h - tempH);
       }
 
       if (seat === 'tr') {
-        this.setState({
-          elmY: getRealY(e.pageY),
-          elmW: getRealWidth(e.pageX - m),
-          elmH: getRealHeight((h + n) - e.pageY),
-        });
+        tempW = getRealWidth(e.pageX - x);
+        tempH = !isRatio ? getRealHeight((h + y) - e.pageY) : tempW * ratio;
+        tempY = !isRatio ? getRealY(e.pageY) : y + (h - tempH);
       }
 
       if (seat === 'bl') {
-        this.setState({
-          elmX: getRealX(e.pageX),
-          elmW: getRealWidth((w + m) - e.pageX),
-          elmH: getRealHeight(e.pageY - n),
-        });
+        tempW = getRealWidth((w + x) - e.pageX);
+        tempH = !isRatio ? getRealHeight(e.pageY - y) : tempW * ratio;
+        tempX = getRealX(e.pageX);
       }
+
+      this.setState({ elmX: tempX, elmY: tempY, elmW: tempW, elmH: tempH });
     };
   }
 
