@@ -11,9 +11,11 @@ class Home extends Component {
   render() {
     return (
       <div className={`page ${S_S_.page_home}`}>
-        <Dragresize>
-          <Module />
-        </Dragresize>
+        <div className={S_S_.canvas}>
+          <Dragresize>
+            <Module />
+          </Dragresize>
+        </div>
         <EditPanel data={data} />
       </div>
     );
