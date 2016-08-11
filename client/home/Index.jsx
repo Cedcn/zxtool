@@ -12,7 +12,7 @@ class Home extends Component {
     return (
       <div className={`page ${S_S_.page_home}`}>
         <div className={S_S_.canvas}>
-          <Dragresize>
+          <Dragresize isChecked isResize>
             <Module />
           </Dragresize>
         </div>
