@@ -15,10 +15,6 @@ class Dragresize extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      elmX: 10,
-      elmY: 20,
-      elmW: 200,
-      elmH: 150,
       isDrag: false,
     };
 
@@ -32,7 +28,13 @@ class Dragresize extends Component {
     const minWidth = this.props.minWidth || 10;
     const minHeight = this.props.minHeight || 10;
     const isRatio = this.props.isRatio || false;
-    const [ minLeft, minTop, maxLeft, maxTop ] = this.props.dragScope || [ 0, 0, 900, 500 ];
+    const minLeft = this.props.minLeft || 0;
+    const minTop = this.props.minTop || 0;
+    const maxLeft = this.props.maxLeft || 900;
+    const maxTop = this.props.maxTop || 500;
+    const onMove = this.props.onMove || null;
+    const onResize = this.props.onResize || null;
+    const onMouseDown = this.props.onMouseDown || null;
 
     this.mouseDown = e => {
       if (e.button !== 0) return;
@@ -40,11 +42,12 @@ class Dragresize extends Component {
       this.setState({ isDrag: true });
       m_x = e.pageX;
       m_y = e.pageY;
-      x = this.state.elmX;
-      y = this.state.elmY;
-      w = this.state.elmW;
-      h = this.state.elmH;
+      x = this.props.elmX;
+      y = this.props.elmY;
+      w = this.props.elmW;
+      h = this.props.elmH;
       document.addEventListener('mousemove', this.mouseMove);
+      if (onMouseDown) onMouseDown();
     };
 
     const getDragRealX = value => {
@@ -61,9 +64,11 @@ class Dragresize extends Component {
 
     this.mouseMove = e => {
       if (!this.state.isDrag) return;
-
       e.preventDefault();
-      this.setState({ elmX: getDragRealX(x + (e.pageX - m_x)), elmY: getDragRealY(y + (e.pageY - m_y)) });
+      const tempX = getDragRealX(x + (e.pageX - m_x));
+      const tempY = getDragRealY(y + (e.pageY - m_y));
+      // this.setState({ elmX: tempX, elmY: tempY });
+      if (onMove) onMove({ elmX: tempX, elmY: tempY });
     };
 
     this.mouseUp = () => {
@@ -82,10 +87,10 @@ class Dragresize extends Component {
         document.addEventListener('mousemove', this.moveResize);
         m_x = e.pageX;
         m_y = e.pageY;
-        w = this.state.elmW;
-        h = this.state.elmH;
-        x = this.state.elmX;
-        y = this.state.elmY;
+        w = this.props.elmW;
+        h = this.props.elmH;
+        x = this.props.elmX;
+        y = this.props.elmY;
       };
     };
 
@@ -164,6 +169,7 @@ class Dragresize extends Component {
           break;
       }
       this.setState({ elmX: tempX, elmY: tempY, elmW: tempW, elmH: tempH });
+      if (onResize) onResize({ elmX: tempX, elmY: tempY, elmW: tempW, elmH: tempH });
     };
   }
 
@@ -176,7 +182,7 @@ class Dragresize extends Component {
   }
 
   render() {
-    const { elmX, elmY, elmW, elmH } = this.state;
+    const { elmX = 20, elmY = 20, elmW = 100, elmH = 60 } = this.props;
     const isChecked = this.props.isChecked || false;
     const isResize = (this.props.isResize && isChecked) || false;
     const style = {
@@ -224,10 +230,20 @@ Dragresize.propTypes = {
   children: PropTypes.element,
   minWidth: PropTypes.number,
   minHeight: PropTypes.number,
+  minLeft: PropTypes.number,
+  minTop: PropTypes.number,
+  maxLeft: PropTypes.number,
+  maxTop: PropTypes.number,
+  elmX: PropTypes.number,
+  elmY: PropTypes.number,
+  elmW: PropTypes.number,
+  elmH: PropTypes.number,
   isRatio: PropTypes.bool,
   isResize: PropTypes.bool,
   isChecked: PropTypes.bool,
-  dragScope: PropTypes.array,
+  onMove: PropTypes.func,
+  onResize: PropTypes.func,
+  onMouseDown: PropTypes.func,
 };
 
 export default Dragresize;

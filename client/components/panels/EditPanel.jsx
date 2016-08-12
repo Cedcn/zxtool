@@ -3,32 +3,43 @@ import { InputNumber, Input } from 'antd';
 
 import S_S_ from './edit_panel.scss';
 
-const value = {
-  width: 200,
-  height: 200,
-};
-
 class Panel extends Component {
   constructor(props) {
     super(props);
-    this.getInput = (type, name) => {
-      switch (type) {
-        case 'number':
-          return <InputNumber min={1} max={1000} defaultValue={value[name]} />;
-        case 'text':
-          return <Input defaultValue={value[name]} />;
-      }
+    const { actions } = this.props;
+    this.change = name => {
+      return value => {
+        const { data } = this.props;
+        const obj = {};
+        obj[name] = value;
+        actions.updateData(data.mid, obj);
+      };
     };
   }
 
   render() {
-    const { name, parameters } = this.props.data;
+    const { name, parameters } = this.props.structure;
+    const data = this.props.data;
+
+    if (!data) {
+      return (
+        <div>23423</div>
+      );
+    }
+    const getInput = (type, name) => {
+      switch (type) {
+        case 'number':
+          return <InputNumber min={1} max={1000} value={data[name]} onChange={this.change(name)} />;
+        case 'text':
+          return <Input value={data[name]} />;
+      }
+    };
     const categoryList = parameters.map((category, index) => {
       const paramList = category.section.map((param, sub) => {
         return (
           <div className={S_S_.filed} key={sub} style={{ width: param.per || '50%' }}>
             <div className="label">{param.label}:</div>
-            {this.getInput(param.type, param.name)}
+            {getInput(param.type, param.name)}
           </div>
         );
       });
@@ -48,6 +59,7 @@ class Panel extends Component {
       <div className={S_S_.edit_panel}>
         <div className={S_S_.name}>
           {name}
+          <div>{data.mid}</div>
         </div>
         <div>
           {categoryList}
@@ -59,7 +71,9 @@ class Panel extends Component {
 
 
 Panel.propTypes = {
+  structure: PropTypes.object,
   data: PropTypes.object,
+  actions: PropTypes.object,
 };
 
 export default Panel;

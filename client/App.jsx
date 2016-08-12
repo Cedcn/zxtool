@@ -26,6 +26,7 @@ const store = compose(
 
 const select = state => ({
   modal: state.modal,
+  canvasData: state.canvasData,
 });
 
 const createElement = (Component, props) => {
