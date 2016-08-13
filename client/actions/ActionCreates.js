@@ -14,3 +14,6 @@ export const createData = (mid, data) =>
 
 export const updateData = (mid, data) =>
   ({ type: TYPE.UPDATE_DATA, mid, data });
+
+export const goBehind = (mid) =>
+  ({ type: TYPE.GOBEHIND, mid });

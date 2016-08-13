@@ -1,24 +1,34 @@
 import * as TYPE from '../actions/ActionTypes';
 import _ from 'lodash';
 // module reducer
-const initialDataState = [];
+const initialDataState = [
+  { mid: '123', elmX: 10, elmY: 10, elmW: 200, elmH: 100 },
+];
 
 function handleData(state = initialDataState, action) {
+  const newState = state.slice();
+
   switch (action.type) {
     case TYPE.UPDATE_DATA: {
-      const newState = state.slice();
       const index = _.findIndex(newState, item => { return item.mid === action.mid; });
       newState[index] = { ...newState[index], ...action.data };
-      return newState;
+      break;
     }
     case TYPE.CREATE_DATA: {
-      const newState = state.slice();
       newState.push({ mid: action.mid, ...action.data });
-      return newState;
+      break;
     }
-    default:
-      return state;
+    case TYPE.GOBEHIND: {
+      const index = _.findIndex(newState, item => { return item.mid === action.mid; });
+      if (index !== newState.length - 1) {
+        const thunk = newState.splice(index, 1);
+        newState.push(thunk[0]);
+      }
+      break;
+    }
   }
+
+  return newState;
 }
 
 export default handleData;
