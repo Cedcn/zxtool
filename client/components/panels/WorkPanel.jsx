@@ -13,9 +13,13 @@ class WorkPanel extends Component {
 
   render() {
     const { width, height } = this.props;
+    const style = {
+      width,
+      height,
+    };
     return (
       <div className={S_S_.work_panel_wrapper}>
-        <div className={S_S_.work_panel} style={{ width, height }} onMouseDown={this.mouseDown}>
+        <div className={S_S_.work_panel} style={style} onMouseDown={this.mouseDown}>
           { this.props.children }
         </div>
       </div>
@@ -24,7 +28,7 @@ class WorkPanel extends Component {
 }
 
 WorkPanel.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.element,
   width: PropTypes.number,
   height: PropTypes.number,
   onMouseDown: PropTypes.func,

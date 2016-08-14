@@ -24,10 +24,7 @@ const store = compose(
 )(createStore)(reducers);
 
 
-const select = state => ({
-  modal: state.modal,
-  canvasData: state.canvasData,
-});
+const select = state => ({ ...state });
 
 const createElement = (Component, props) => {
   const NewComponent = connect(select, (dispatch) => (

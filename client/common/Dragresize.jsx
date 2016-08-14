@@ -19,7 +19,7 @@ const getltValue = (v1, v2) => {
   } else if (v1 && !v2) {
     return v1;
   } else {
-    return null;
+    return false;
   }
 };
 
@@ -46,43 +46,57 @@ class Dragresize extends Component {
 
     // 限制拖拽范围
     this.limitDragScopeX = value => {
-      const { maxLeft, minLeft } = this.props;
-      console.log(props);
-      const max_value = maxLeft - w;
-      const min_value = minLeft;
+      const { maxLeft, minLeft, islimitScope } = this.props;
+      let max_value = maxLeft - w;
+      let min_value = minLeft;
+      if (!islimitScope) {
+        max_value = false;
+        min_value = false;
+      }
       return getRealValue(value, max_value, min_value);
     };
 
     this.limitDragScopeY = value => {
-      const { maxTop, minTop } = this.props;
-      const max_value = maxTop - h;
-      const min_value = minTop;
+      const { maxTop, minTop, islimitScope } = this.props;
+      let max_value = maxTop - h;
+      let min_value = minTop;
+      if (!islimitScope) {
+        max_value = false;
+        min_value = false;
+      }
       return getRealValue(value, max_value, min_value);
     };
 
     // 限制缩放X的位置
     this.limitResizeScopeX = value => {
-      const { minLeft, minWidth = 10 } = this.props;
+      const { minLeft, minWidth = 10, islimitScope } = this.props;
       const max_value = (x + w) - minWidth;
-      const min_value = minLeft;
+      let min_value = minLeft;
+      if (!islimitScope) {
+        min_value = false;
+      }
       return getRealValue(value, max_value, min_value);
     };
 
     // 限制缩放Y的位置
     this.limitResizeScopeY = value => {
-      const { minHeight = 10, minTop } = this.props;
+      const { minHeight = 10, minTop, islimitScope } = this.props;
       const max_value = (y + h) - minHeight;
-      const min_value = minTop;
+      let min_value = minTop;
+      if (!islimitScope) {
+        min_value = false;
+      }
       return getRealValue(value, max_value, min_value);
     };
 
     // 限制宽度
     this.limitResizeScopeW_r = value => {
-      const { maxLeft, minWidth = 10, maxWidth } = this.props;
-      console.log(maxWidth);
-      console.log(maxLeft - x);
-      const max_value = getltValue(maxLeft - x, maxWidth);
+      const { maxLeft, minWidth = 10, maxWidth, islimitScope } = this.props;
+      let max_value = getltValue(maxLeft - x, maxWidth);
       const min_value = minWidth;
+      if (!islimitScope) {
+        max_value = maxWidth;
+      }
       return getRealValue(value, max_value, min_value);
     };
 
@@ -100,15 +114,17 @@ class Dragresize extends Component {
       return getRealValue(value, max_value, min_value);
     };
     this.limitResizeScopeH_b = value => {
-      const { maxTop, minHeight = 10, maxHeight } = this.props;
-      const max_value = getltValue(maxTop - y, maxHeight);
+      const { maxTop, minHeight = 10, maxHeight, islimitScope } = this.props;
+      let max_value = getltValue(maxTop - y, maxHeight);
       const min_value = minHeight;
+      if (!islimitScope) {
+        max_value = maxHeight;
+      }
       return getRealValue(value, max_value, min_value);
     };
 
     this.mouseDown = e => {
       if (e.button !== 0) return;
-      e.preventDefault();
       e.stopPropagation();
       this.cacheMoustDownAttrs(e);
       document.addEventListener('mousemove', this.mouseMove);
@@ -117,9 +133,8 @@ class Dragresize extends Component {
 
     this.mouseMove = e => {
       e.preventDefault();
-      const { islimitScope = true } = this.props;
-      const tempX = islimitScope ? this.limitDragScopeX(x + (e.pageX - m_x)) : x + (e.pageX - m_x);
-      const tempY = islimitScope ? this.limitDragScopeY(y + (e.pageY - m_y)) : y + (e.pageY - m_y);
+      const tempX = this.limitDragScopeX(x + (e.pageX - m_x));
+      const tempY = this.limitDragScopeY(y + (e.pageY - m_y));
 
       document.addEventListener('mouseup', this.mouseUp);
       if (this.props.onMouseMove) this.props.onMouseMove({ elmX: tempX, elmY: tempY });
@@ -148,11 +163,11 @@ class Dragresize extends Component {
       // set attribute of this dragbox
       switch (seat) {
         case 'br':
-          tempW = this.limitResizeScopeW_r(w + (e.pageX - m_x), tempX);
-          tempH = this.limitResizeScopeH_b(h + (e.pageY - m_y), tempY);
+          tempW = this.limitResizeScopeW_r(w + (e.pageX - m_x));
+          tempH = this.limitResizeScopeH_b(h + (e.pageY - m_y));
           if (isRatio) {
-            tempW = this.limitResizeScopeW_r(tempH / ratio, tempX);
-            tempH = this.limitResizeScopeH_b(tempW * ratio, tempY);
+            tempH = this.limitResizeScopeH_b(tempW * ratio);
+            tempW = this.limitResizeScopeW_r(tempH / ratio);
           }
           break;
         case 'tl':

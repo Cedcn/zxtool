@@ -1,0 +1,11 @@
+.work_panel_size {
+  display: flex;
+  flex-direction: row;
+
+  .field {
+    display: inline-block;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+  }
+}

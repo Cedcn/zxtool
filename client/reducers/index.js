@@ -2,7 +2,8 @@ import React from 'react';
 import { combineReducers } from 'redux';
 import * as TYPE from '../actions/ActionTypes';
 
-import handleData from './canvas';
+import canvasesData from './canvas';
+import workPanel from './work_panel';
 
 // modal reducer
 const initialModalState = {
@@ -23,7 +24,8 @@ function modalSwitch(state = initialModalState, action) {
 
 const rootReducer = combineReducers({
   modal: modalSwitch,
-  canvasData: handleData,
+  canvasesData,
+  workPanel,
 });
 
 

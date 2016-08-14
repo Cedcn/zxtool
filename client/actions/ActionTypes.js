@@ -1,7 +1,16 @@
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 
-export const UPDATE_DATA = 'UPDATE_DATA';
-export const CREATE_DATA = 'CREATE_DATA';
-
+export const UPDATE_MODULE = 'UPDATE_MODULE';
+export const CREATE_MODULE = 'CREATE_MODULE';
+export const DELETE_MODULE = 'DELETE_MODULE';
 export const GOBEHIND = 'GOBEHIND';
+
+export const LIMITSCOPE = 'LIMITSCOPE';
+export const SHOWRULER = 'SHOWRULER';
+export const SHOWSTATUSBAR = 'SHOWSTATUSBAR';
+export const WORKPANELWIDTH = 'WORKPANELWIDTH';
+export const WORKPANELHEIGHT = 'WORKPANELHEIGHT';
+
+export const CREATE_CANVAS = 'CREATE_CANVAS';
+export const CHECKMODULE = 'CHECKMODULE';
