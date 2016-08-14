@@ -1,0 +1,12 @@
+.left_sidebar {
+  padding-top: 45px;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+
+  .thumb_canvases_wrapper {
+    width: 120px;
+    overflow: hidden;
+    background-color: rgba(249,249,249,1);
+  }
+}

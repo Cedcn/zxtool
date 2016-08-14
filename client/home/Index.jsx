@@ -4,6 +4,7 @@ import UUID from 'uuid-js';
 
 import S_S_ from './index.scss';
 import Topbar from './Topbar';
+import LeftSidebar from './LeftSidebar';
 
 import Canvases from '../components/workbench/Canvases';
 
@@ -31,6 +32,12 @@ class Home extends Component {
     return (
       <div className={`page ${S_S_.page_home}`}>
         <Topbar actions={actions} workPanel={workPanel} />
+        <LeftSidebar
+          actions={actions}
+          canvasesData={canvasesData}
+          originalWidth={workPanel.width}
+          originalHeight={workPanel.height}
+        />
         <WorkPanel
           {...workPanel}
           onMouseDown={() => actions.checkModule('123', null)}
@@ -42,8 +49,8 @@ class Home extends Component {
             maxTop={workPanel.height}
             islimitScope={workPanel.islimitScope}
           />
+          <a href="javascript:;" onClick={this.addModule}>添加一个热区</a>
         </WorkPanel>
-        <a href="javascript:;" onClick={this.addModule}>添加一个热区</a>
         <EditPanel
           structure={structure}
           minLeft={0}

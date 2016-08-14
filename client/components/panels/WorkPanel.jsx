@@ -28,7 +28,7 @@ class WorkPanel extends Component {
 }
 
 WorkPanel.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.array,
   width: PropTypes.number,
   height: PropTypes.number,
   onMouseDown: PropTypes.func,
