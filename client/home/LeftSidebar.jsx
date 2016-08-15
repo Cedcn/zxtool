@@ -9,7 +9,7 @@ class LeftSidebar extends Component {
   }
 
   render() {
-    const { actions, canvasesData, originalWidth, originalHeight } = this.props;
+    const { actions, canvasesData, originalWidth, originalHeight, checkedCid } = this.props;
     return (
       <div className={S_S_.left_sidebar}>
         <div className={S_S_.thumb_canvases_wrapper}>
@@ -18,6 +18,7 @@ class LeftSidebar extends Component {
             canvasesData={canvasesData}
             originalWidth={originalWidth}
             originalHeight={originalHeight}
+            checkedCid={checkedCid}
           />
         </div>
       </div>
@@ -30,6 +31,7 @@ LeftSidebar.propTypes = {
   canvasesData: PropTypes.array,
   originalWidth: PropTypes.number,
   originalHeight: PropTypes.number,
+  checkedCid: PropTypes.string,
 };
 
 

@@ -16,6 +16,9 @@ export const updateModule = (cid, mid, data) =>
 export const goBehind = (cid, mid) =>
   ({ type: TYPE.GOBEHIND, cid, mid });
 
+export const checkModule = (cid, checkedMid) =>
+  ({ type: TYPE.CHECK_MODULE, cid, checkedMid });
+
 export const delete_module = (cid, mid) =>
   ({ type: TYPE.DELETE_MODULE, cid, mid });
 
@@ -35,9 +38,8 @@ export const setWorkPanelWidth = width =>
 export const setWorkPanelHeight = height =>
   ({ type: TYPE.WORKPANELHEIGHT, height });
 
+export const createCanvas = cid =>
+  ({ type: TYPE.CREATE_CANVAS, cid });
 
-export const cerateCanvas = () =>
-  ({ type: TYPE.CREATE_CANVAS });
-
-export const checkModule = (cid, checkedMid) =>
-  ({ type: TYPE.CHECKMODULE, cid, checkedMid });
+export const checkCanvas = checkedCid =>
+  ({ type: TYPE.CHECK_CANVAS, checkedCid });

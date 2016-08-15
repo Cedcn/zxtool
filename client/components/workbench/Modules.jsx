@@ -41,7 +41,6 @@ class Modules extends Component {
           elmH={item.elmH}
           isChecked={checkedMid === item.mid}
           isResize
-          isRatio
           minLeft={0}
           minTop={0}
           maxLeft={maxLeft}

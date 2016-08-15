@@ -18,15 +18,23 @@ class Home extends Component {
     super(props);
     const { actions } = props;
     this.addModule = () => {
+      const { workPanel } = this.props;
       const uuid1 = UUID.create(1).toString();
-      actions.createModule('123', uuid1, { elmX: 80, elmY: 40, elmW: 80, elmH: 140 });
-      actions.checkModule('123', uuid1);
+      console.log(workPanel.checkedCid);
+      actions.createModule(workPanel.checkedCid, uuid1, { elmX: 80, elmY: 40, elmW: 80, elmH: 140 });
+      actions.checkModule(workPanel.checkedCid, uuid1);
+    };
+    this.addCanvas = () => {
+      const uuid1 = UUID.create(1).toString();
+      actions.createCanvas(uuid1);
+      actions.checkCanvas(uuid1);
     };
   }
 
   render() {
     const { canvasesData, actions, workPanel } = this.props;
-    const canvasDada = _.find(canvasesData, item => { return item.cid === '123'; });
+    console.log(workPanel.checkedCid);
+    const canvasDada = _.find(canvasesData, item => { return item.cid === workPanel.checkedCid; });
     const editData = _.find(canvasDada.modules, item => { return item.mid === canvasDada.checkedMid; });
 
     return (
@@ -37,10 +45,13 @@ class Home extends Component {
           canvasesData={canvasesData}
           originalWidth={workPanel.width}
           originalHeight={workPanel.height}
+          checkedCid={workPanel.checkedCid}
         />
         <WorkPanel
           {...workPanel}
-          onMouseDown={() => actions.checkModule('123', null)}
+          onMouseDown={() => {
+            actions.checkModule(workPanel.checkedCid, null);
+          }}
         >
           <Canvases
             canvasesData={canvasesData}
@@ -48,15 +59,19 @@ class Home extends Component {
             maxLeft={workPanel.width}
             maxTop={workPanel.height}
             islimitScope={workPanel.islimitScope}
+            checkedCid={workPanel.checkedCid}
           />
-          <a href="javascript:;" onClick={this.addModule}>添加一个热区</a>
         </WorkPanel>
+        <div style={{ paddingLeft: 200 }}>
+          <a href="javascript:;" onClick={this.addModule}>添加一个热区</a>
+          <a href="javascript:;" onClick={this.addCanvas}>添加一个画布</a>
+        </div>
         <EditPanel
           structure={structure}
           minLeft={0}
           minTop={0}
           data={editData}
-          cid="123"
+          cid={workPanel.checkedCid}
           actions={this.props.actions}
         />
       </div>

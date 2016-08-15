@@ -48,6 +48,11 @@ function canvasesData(state = initialCanvasState, action) {
       newState.push({ modules: [], cid: action.cid });
       break;
     }
+    case TYPE.DELETE_CANVAS: {
+      const canvasIndex = _.findIndex(newState, item => { return item.cid === action.cid; });
+      newState.splice(canvasIndex, 1);
+      break;
+    }
     case TYPE.UPDATE_MODULE: {
       const canvasIndex = _.findIndex(newState, item => { return item.cid === action.cid; });
       const moduleIndex = _.findIndex(newState[canvasIndex].modules, item => { return item.mid === action.mid; });
@@ -74,7 +79,7 @@ function canvasesData(state = initialCanvasState, action) {
       }
       break;
     }
-    case TYPE.CHECKMODULE: {
+    case TYPE.CHECK_MODULE: {
       const canvasIndex = _.findIndex(newState, item => { return item.cid === action.cid; });
       newState[canvasIndex].checkedMid = action.checkedMid;
       break;

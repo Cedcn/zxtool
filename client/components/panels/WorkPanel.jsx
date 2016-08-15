@@ -7,7 +7,7 @@ class WorkPanel extends Component {
     super(props);
     this.mouseDown = e => {
       e.stopPropagation();
-      if (props.onMouseDown) props.onMouseDown();
+      if (this.props.onMouseDown) this.props.onMouseDown();
     };
   }
 
@@ -28,7 +28,7 @@ class WorkPanel extends Component {
 }
 
 WorkPanel.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.object,
   width: PropTypes.number,
   height: PropTypes.number,
   onMouseDown: PropTypes.func,

@@ -1,31 +1,27 @@
 import React, { Component, PropTypes } from 'react';
-
+import _ from 'lodash';
 import S_S_ from './canvases.scss';
 
 import Modules from './Modules';
 
 class Canvases extends Component {
   render() {
-    const { canvasesData, actions, maxLeft, maxTop, islimitScope } = this.props;
-    const canvasesList = canvasesData.map((item, index) => {
-      if (!item.modules) return false;
-      return (
-        <div className={S_S_.canvas} key={index}>
+    const { canvasesData, actions, maxLeft, maxTop, islimitScope, checkedCid } = this.props;
+    const modulesData = _.find(canvasesData, item => item.cid === checkedCid);
+    console.log(modulesData);
+    return (
+      <div className={S_S_.canvases}>
+        <div className={S_S_.canvas}>
           <Modules
             actions={actions}
-            cid={item.cid}
+            cid={checkedCid}
             maxLeft={maxLeft}
             maxTop={maxTop}
             islimitScope={islimitScope}
-            modulesData={item.modules}
-            checkedMid={item.checkedMid}
+            modulesData={modulesData.modules}
+            checkedMid={modulesData.checkedMid}
           />
         </div>
-      );
-    });
-    return (
-      <div className={S_S_.canvases}>
-        {canvasesList}
       </div>
     );
   }
@@ -37,6 +33,7 @@ Canvases.propTypes = {
   maxLeft: PropTypes.number,
   maxTop: PropTypes.number,
   islimitScope: PropTypes.bool,
+  checkedCid: PropTypes.string,
 };
 
 
