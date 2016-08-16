@@ -8,7 +8,6 @@ class Canvases extends Component {
   render() {
     const { canvasesData, actions, maxLeft, maxTop, islimitScope, checkedCid } = this.props;
     const modulesData = _.find(canvasesData, item => item.cid === checkedCid);
-    console.log(modulesData);
     return (
       <div className={S_S_.canvases}>
         <div className={S_S_.canvas}>

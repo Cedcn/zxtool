@@ -69,7 +69,7 @@ class Dragresize extends Component {
 
     // 限制缩放X的位置
     this.limitResizeScopeX = value => {
-      const { minLeft, minWidth = 10, islimitScope } = this.props;
+      const { minLeft, minWidth, islimitScope } = this.props;
       const max_value = (x + w) - minWidth;
       let min_value = minLeft;
       if (!islimitScope) {
@@ -80,7 +80,7 @@ class Dragresize extends Component {
 
     // 限制缩放Y的位置
     this.limitResizeScopeY = value => {
-      const { minHeight = 10, minTop, islimitScope } = this.props;
+      const { minHeight, minTop, islimitScope } = this.props;
       const max_value = (y + h) - minHeight;
       let min_value = minTop;
       if (!islimitScope) {
@@ -101,20 +101,20 @@ class Dragresize extends Component {
     };
 
     this.limitResizeScopeW_l = value => {
-      const { minWidth = 10, maxWidth } = this.props;
+      const { minWidth, maxWidth } = this.props;
       const max_value = getltValue((x + w) - minWidth, maxWidth);
       const min_value = minWidth;
       return getRealValue(value, max_value, min_value);
     };
     // 限制高度
     this.limitResizeScopeH_t = value => {
-      const { minHeight = 10, maxHeight } = this.props;
+      const { minHeight, maxHeight } = this.props;
       const max_value = getltValue((y + h) - minHeight, maxHeight);
       const min_value = minHeight;
       return getRealValue(value, max_value, min_value);
     };
     this.limitResizeScopeH_b = value => {
-      const { maxTop, minHeight = 10, maxHeight, islimitScope } = this.props;
+      const { maxTop, minHeight, maxHeight, islimitScope } = this.props;
       let max_value = getltValue(maxTop - y, maxHeight);
       const min_value = minHeight;
       if (!islimitScope) {
@@ -262,10 +262,10 @@ class Dragresize extends Component {
 
 Dragresize.propTypes = {
   children: PropTypes.element,
-  elmX: PropTypes.number,
-  elmY: PropTypes.number,
-  elmW: PropTypes.number,
-  elmH: PropTypes.number,
+  elmX: PropTypes.number.isRequired,
+  elmY: PropTypes.number.isRequired,
+  elmW: PropTypes.number.isRequired,
+  elmH: PropTypes.number.isRequired,
   minWidth: PropTypes.number,
   minHeight: PropTypes.number,
   maxWidth: PropTypes.number,
@@ -280,7 +280,7 @@ Dragresize.propTypes = {
   onMouseMove: PropTypes.func,
   onResizeHandle: PropTypes.func,
   onMouseDown: PropTypes.func,
-  islimitScope: PropTypes.bool,
+  islimitScope: PropTypes.bool.isRequired,
 };
 
 export default Dragresize;

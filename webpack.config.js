@@ -20,6 +20,9 @@ const config = {
       path.join(__dirname, '/'),
     ],
     extensions: ['', '.js', '.jsx'],
+    alias: {
+      modules: 'client/modules/index.js',
+    },
   },
   module: {
     noParse: [],

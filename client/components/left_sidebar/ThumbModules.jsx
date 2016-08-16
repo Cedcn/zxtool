@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 
-import Module from '../modules/linkblock/Module';
+import { Linkblock, Image } from 'modules';
 
 import S_S_ from './thumb_modules.scss';
 
-const width = 100;
 class ThumbModules extends Component {
   render() {
     const { actions, data, originalWidth, originalHeight, scaleRatio } = this.props;
@@ -17,7 +16,7 @@ class ThumbModules extends Component {
       }
       return (
         <div className={S_S_.thumb_module} key={index} style={style}>
-          <Module />
+          <Linkblock />
         </div>
       )
     });

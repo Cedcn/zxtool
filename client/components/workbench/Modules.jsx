@@ -3,7 +3,8 @@ import React, { Component, PropTypes } from 'react';
 import S_S_ from './canvases.scss';
 
 import Dragresize from '../../common/Dragresize';
-import Module from '../modules/linkblock/Module';
+// import Module from '../modules/linkblock/Module';
+import { Linkblock, Image } from 'modules';
 
 let tempMid = '';
 class Modules extends Component {
@@ -30,30 +31,33 @@ class Modules extends Component {
   }
   render() {
     const { modulesData, checkedMid, maxLeft, maxTop, islimitScope } = this.props;
-
+    if (!modulesData) return;
     const modulesList = modulesData.map((item, index) => {
+      const loadModule = item.template === 'linkblock' ? Linkblock : Image;
       return (
         <Dragresize
           key={index}
-          elmX={item.elmX}
-          elmY={item.elmY}
-          elmW={item.elmW}
-          elmH={item.elmH}
-          isChecked={checkedMid === item.mid}
-          isResize
           minLeft={0}
           minTop={0}
           maxLeft={maxLeft}
           maxTop={maxTop}
           islimitScope={islimitScope}
+          elmX={item.elmX}
+          elmY={item.elmY}
+          elmW={item.elmW}
+          elmH={item.elmH}
+          isChecked={checkedMid === item.mid}
+          isResize={item.isResize}
+          isRatio={item.isRatio}
+          minWidth={item.minWidth}
+          minHeight={item.minHeight}
+          maxWidth={item.maxWidth}
+          maxHeight={item.maxHeight}
           onMouseDown={this.check(item.mid)}
           onMouseMove={this.change(item.mid)}
           onResizeHandle={this.change(item.mid)}
         >
-          <div>
-            <div>{item.mid}</div>
-            <Module />
-          </div>
+          {React.createElement(loadModule, { data: item })}
         </Dragresize>
       );
     });

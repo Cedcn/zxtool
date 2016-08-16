@@ -1,37 +1,50 @@
 import React, { Component, PropTypes } from 'react';
 import { InputNumber, Input } from 'antd';
 
+import { Linkblock, Image } from 'modules';
+
 import S_S_ from './edit_panel.scss';
 
 class Panel extends Component {
   constructor(props) {
     super(props);
     const { actions } = this.props;
+
+    this.getStructure = template => {
+      switch (template) {
+        case 'linkblock':
+          return Linkblock.getStructure();
+        case 'image':
+          return Image.getStructure();
+      }
+    };
+
     this.change = name => {
-      return value => {
+      return e => {
         const { data, cid } = this.props;
         const obj = {};
-        obj[name] = value;
+        obj[name] = Number(e.target.value);
         actions.updateModule(cid, data.mid, obj);
       };
     };
   }
 
   render() {
-    const { name, parameters } = this.props.structure;
     const { data, minLeft, minTop, maxLeft, maxTop, actions } = this.props;
-
     if (!data) {
       return (
         <div>23423</div>
       );
     }
+    console.log(data);
+    const structure = this.getStructure(data.template);
+    const { name, parameters } = structure;
     const getInput = (type, param) => {
       switch (type) {
         case 'number':
-          return <InputNumber min={0} max={2000} value={data[param]} onChange={this.change(param)} />;
+          return <input value={data[param]} onChange={this.change(param)} />;
         case 'text':
-          return <Input value={data[param]} />;
+          return <input value={data[param]} onChange={this.change(param)} />;
       }
     };
 
@@ -40,19 +53,19 @@ class Panel extends Component {
         <div className={S_S_.section_header}>基础属性</div>
         <div className={S_S_.filed} style={{ width: '50%' }}>
           <div className="label">X位置:</div>
-          <InputNumber min={minLeft} max={maxLeft} value={data.elmX} onChange={this.change('elmX')} />
+          <input value={data.elmX} onChange={this.change('elmX')} />
         </div>
         <div className={S_S_.filed} style={{ width: '50%' }}>
           <div className="label">Y位置:</div>
-          <InputNumber min={minTop} max={maxTop} value={data.elmY} onChange={this.change('elmY')} />
+          <input value={data.elmY} onChange={this.change('elmY')} />
         </div>
         <div className={S_S_.filed} style={{ width: '50%' }}>
           <div className="label">宽度:</div>
-          <InputNumber min={minTop} max={maxTop} value={data.elmW} onChange={this.change('elmW')} />
+          <input value={data.elmW} onChange={this.change('elmW')} />
         </div>
         <div className={S_S_.filed} style={{ width: '50%' }}>
           <div className="label">高度:</div>
-          <InputNumber min={minTop} max={maxTop} value={data.elmH} onChange={this.change('elmH')} />
+          <input value={data.elmH} onChange={this.change('elmH')} />
         </div>
       </div>
     );

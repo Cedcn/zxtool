@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import UUID from 'uuid-js';
+
 import ThumbModules from './ThumbModules';
 
 import S_S_ from './thumb_canvases.scss';
@@ -11,6 +13,12 @@ class ThumbCanvases extends Component {
     this.switchCanvas = cid => {
       if (this.props.checkedCid === cid) return;
       actions.checkCanvas(cid);
+    };
+
+    this.addCanvas = () => {
+      const uuid1 = UUID.create(1).toString();
+      actions.createCanvas(uuid1);
+      actions.checkCanvas(uuid1);
     };
   }
   render() {
@@ -37,6 +45,7 @@ class ThumbCanvases extends Component {
     });
     return (
       <div className={S_S_.thumb_canvases}>
+        <a href="javascript:;" onClick={this.addCanvas}>添加一个画布</a>
         {thumbCanvasList}
       </div>
     );
