@@ -1,23 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { InputNumber, Input } from 'antd';
 
-import { Linkblock, Image } from 'modules';
-
+import { getModule } from '../../common/tools';
 import S_S_ from './edit_panel.scss';
 
 class Panel extends Component {
   constructor(props) {
     super(props);
     const { actions } = this.props;
-
-    this.getStructure = template => {
-      switch (template) {
-        case 'linkblock':
-          return Linkblock.getStructure();
-        case 'image':
-          return Image.getStructure();
-      }
-    };
 
     this.change = name => {
       return e => {
@@ -36,8 +26,7 @@ class Panel extends Component {
         <div>23423</div>
       );
     }
-    console.log(data);
-    const structure = this.getStructure(data.template);
+    const structure = getModule(data.template).getStructure();
     const { name, parameters } = structure;
     const getInput = (type, param) => {
       switch (type) {

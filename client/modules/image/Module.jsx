@@ -1,22 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import S_S_ from './module.scss';
-
 import structure from './module.json';
 
 class Module extends Component {
   static getStructure() {
     return structure;
   }
-  constructor(props) {
-    super(props);
+  static getTemplate(data) {
+    const { imagelink, aas } = data;
+    return `<div><img src="${imagelink}" style="width: 100%">${aas}</div>`;
   }
   render() {
     if (!this.props.data) return false;
-    const { imagelink } = this.props.data;
+
     return (
-      <a className={S_S_.image} href="javascript:;">
-        <div>{imagelink}</div>
-      </a>
+      <div dangerouslySetInnerHTML={{ __html: Module.getTemplate(this.props.data) }} />
     );
   }
 }

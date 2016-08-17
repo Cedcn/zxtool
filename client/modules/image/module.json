@@ -6,8 +6,7 @@
   "elmW": 200,
   "elmH": 100,
   "isRatio": true,
-  "maxWidth": 200,
-  "isResize": false,
+  "isResize": true,
   "parameters": [{
     "title": "图片信息",
     "unfold": true,

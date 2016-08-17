@@ -34,7 +34,7 @@ class Home extends Component {
 
     return (
       <div className={`page ${S_S_.page_home}`}>
-        <Topbar actions={actions} workPanel={workPanel} />
+        <Topbar actions={actions} workPanel={workPanel} canvasesData={canvasesData} />
         <LeftSidebar
           actions={actions}
           canvasesData={canvasesData}
