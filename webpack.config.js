@@ -8,6 +8,7 @@ const config = {
   context: __dirname,
   entry: {
     app: ['./client/App.jsx', hotMiddlewareScript],
+    preview: ['./client/Preview.jsx', hotMiddlewareScript],
   },
   output: {
     path: path.resolve(__dirname, './public/'),
@@ -36,8 +37,8 @@ const config = {
         // loader: ExtractTextPlugin.extract('style-loader', 'css?minimize&modules&localIdentName=[local]__[hash:base64:10]!postcss!sass')
       },
       {
-        test: /\.scss|\.css$/,
-        loader: 'style!css!postcss!sass',
+        test: /\.css$/,
+        loader: 'style!css!postcss',
         include: /node_modules/,
       },
       { test: /\.(ttf|eot|svg|mp4|woff(2)?)(\?[a-z0-9]+)?$/, loader: 'file-loader' },
@@ -58,6 +59,9 @@ const config = {
       manifest: require('./config/manifest.json'),
     }),
   ],
+  node: {
+    fs: 'empty',
+  },
 };
 
 if (process.env.NODE_ENV === 'production') {

@@ -1,36 +1,7 @@
 import * as TYPE from '../actions/ActionTypes';
 import _ from 'lodash';
-// import UUID from 'uuid-js';
 
-// const createUid = () => {
-//   return UUID.create(1).toString();
-// }
-// // module reducer
-// function modulesData(state = [], action) {
-//   const newState = state.slice();
-//
-//   switch (action.type) {
-//     case TYPE.UPDATE_MODULE: {
-//       const index = _.findIndex(newState, item => { return item.mid === action.mid; });
-//       newState[index] = { ...newState[index], ...action.data };
-//       break;
-//     }
-//     case TYPE.CREATE_MODULE: {
-//       newState.push({ mid: action.mid, ...action.data });
-//       break;
-//     }
-//     case TYPE.GOBEHIND: {
-//       const index = _.findIndex(newState, item => { return item.mid === action.mid; });
-//       if (index !== newState.length - 1) {
-//         const thunk = newState.splice(index, 1);
-//         newState.push(thunk[0]);
-//       }
-//       break;
-//     }
-//   }
-//
-//   return newState;
-// }
+const localCanvasesData = JSON.parse(window.localStorage.getItem('canvasesData'));
 
 const initialCanvasState = [
   {
@@ -40,8 +11,7 @@ const initialCanvasState = [
   },
 ];
 
-
-function canvasesData(state = initialCanvasState, action) {
+function canvasesData(state = localCanvasesData || initialCanvasState, action) {
   const newState = state.slice();
   switch (action.type) {
     case TYPE.CREATE_CANVAS: {

@@ -8,6 +8,10 @@ router.get('/', (req, res) => {
   res.render('index', { title: 'Cedcn' });
 });
 
+router.get('/preview', (req, res) => {
+  res.render('preview');
+});
+
 router.route('/signup')
   .get(signup.show)
   .post(signup.create);

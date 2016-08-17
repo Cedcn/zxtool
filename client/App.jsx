@@ -23,6 +23,11 @@ const store = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore)(reducers);
 
+store.subscribe(() => {
+  const { canvasesData, workPanel } = store.getState();
+  window.localStorage.setItem('canvasesData', JSON.stringify(canvasesData));
+  window.localStorage.setItem('workPanel', JSON.stringify(workPanel));
+});
 
 const select = state => ({ ...state });
 

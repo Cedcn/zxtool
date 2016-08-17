@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title Document
+    //- link(rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/normalize/4.2.0/normalize.min.css")
+  body
+    section#preview
+    script(src="/lib.js")
+    script(src="/common.js")
+    script.
+        window.g_hb_monitor_st = +new Date();
+        window.g_config = {
+            appId: 2,
+            assetsHost: "http://a.tbcdn.cn",
+            toolbar: false,
+            pageType: "wangpu",
+        };
+        window.shop_config = {
+            hasImpress: true,
+            shopId: "71421714",
+            siteId: "1",
+            userId: "863866296",
+            user_nick: "no",
+            shopCategoryId: "1042",
+            async_mod: {
+                url: "/widgetAsync.htm?site_instance_id=100908171",
+                hps: 800
+            },
+            template: {
+                name: "",
+                id: "206531",
+                design_nick: ""
+            }
+        };
+        window.shop_config.isView = true;
+        window.shop_config.isvStat = {
+            nickName: 'no',
+            userId: '863866296',
+            shopId: '71421714',
+            siteId: '1',
+            siteCategoryId: '2',
+            itemId: '',
+            shopStats: '',
+            validatorUrl: 'http://store.taobao.com/tadget/shop_stats.htm',
+            templateId: '206531',
+            templateName: ''
+        };
+        window._poc = window._poc || [];
+        window._poc.push(["_trackCustom", "tpl", "new_shop"]);
+    script(src="http://g.tbcdn.cn/??kissy/k/1.3.2/kissy-min.js,tb/global/2.6.12/global-min.js")
+    script(src="http://a.tbcdn.cn/apps/taesite/platinum/scripts/wangpu/init-async-min.js?t=20140212.js")
+    if isDev
+      script(src="/preview.js")  
+      script(src="/reload/reload.js")

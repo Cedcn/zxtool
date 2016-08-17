@@ -1,5 +1,7 @@
 import * as TYPE from '../actions/ActionTypes';
+
 // module reducer
+const localWorkPanel = JSON.parse(window.localStorage.getItem('workPanel'));
 const initialDataState = {
   islimitScope: true,
   isShowRuler: false,
@@ -9,7 +11,7 @@ const initialDataState = {
   height: 300,
 };
 
-function workPanel(state = initialDataState, action) {
+function workPanel(state = localWorkPanel || initialDataState, action) {
   const newState = state;
   switch (action.type) {
     case TYPE.LIMITSCOPE:
