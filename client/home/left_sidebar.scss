@@ -8,13 +8,46 @@
 
   .nav {
     width: 45px;
-    background-color: #2489b6;
+    background-color: #347a9a;
     height: 100%;
+
+    a {
+      display: block;
+      position: relative;
+      color: #78d6ff;
+      font-size: 13px;
+      text-align: center;
+      padding: 10px 0;
+      transition: all 0.3s;
+
+      &.active {
+        color: #fff;
+        background-color: #1f6381;
+        transition: all 0.3s;
+      }
+
+      &.active::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 0;
+        border: 5px solid #fff;
+        border-left-color: transparent;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        transform: translateY(-50%);
+      }
+    }
+
+    .icon {
+      font-size: 18px;
+    }
   }
 
   .thumb_canvases_wrapper {
     width: 110px;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     background-color: rgba(249, 249, 249, 1);
     box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px
   }

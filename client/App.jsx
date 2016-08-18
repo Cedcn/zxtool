@@ -13,6 +13,7 @@ import * as ActionCreates from './actions/ActionCreates';
 import routes from './route';
 
 import 'antd/dist/antd.css';
+import './global.scss';
 
 const middlewares = process.env.NODE_ENV === 'production' ?
   applyMiddleware(thunk) : applyMiddleware(thunk, createLogger());

@@ -9,6 +9,9 @@ class LeftSidebar extends Component {
   constructor(props) {
     super(props);
     const { actions } = props;
+    this.state = {
+      show: 'modules',
+    };
     this.addModule = template => {
       const { checkedCid } = this.props;
       const uuid1 = UUID.create(1).toString();
@@ -27,17 +30,51 @@ class LeftSidebar extends Component {
     return (
       <div className={S_S_.left_sidebar}>
         <div className={S_S_.nav}>
-          <a href="javascript:;">页面</a>
+          <a
+            className={this.state.show === 'canvases' ? S_S_.active : null}
+            href="javascript:;"
+            onClick={() => this.setState({ show: 'canvases' })}
+          >
+            <i className={`${S_S_.icon} iconfont icon-pages`} />
+            <div>页面</div>
+          </a>
+          <a
+            className={this.state.show === 'modules' ? S_S_.active : null}
+            href="javascript:;"
+            onClick={() => this.setState({ show: 'modules' })}
+          >
+            <i className={`${S_S_.icon} iconfont icon-module`} />
+            <div>工具</div>
+          </a>
+          <a
+            className={this.state.show === 'fodder' ? S_S_.active : null}
+            href="javascript:;"
+            onClick={() => this.setState({ show: 'modules' })}
+          >
+            <i className={`${S_S_.icon} iconfont icon-fodder`} />
+            <div>素材</div>
+          </a>
+          <a
+            className={this.state.show === 'template' ? S_S_.active : null}
+            href="javascript:;"
+            onClick={() => this.setState({ show: 'modules' })}
+          >
+            <i className={`${S_S_.icon} iconfont icon-template`} />
+            <div>模板</div>
+          </a>
         </div>
         <div className={S_S_.thumb_canvases_wrapper}>
-          <ThumbCanvases
-            actions={actions}
-            canvasesData={canvasesData}
-            originalWidth={originalWidth}
-            originalHeight={originalHeight}
-            checkedCid={checkedCid}
-          />
-          <ModuleList actions={actions} checkedCid={checkedCid} />
+          {
+            this.state.show === 'canvases' ?
+              <ThumbCanvases
+                actions={actions}
+                canvasesData={canvasesData}
+                originalWidth={originalWidth}
+                originalHeight={originalHeight}
+                checkedCid={checkedCid}
+              /> : null
+          }
+          {this.state.show === 'modules' ? <ModuleList actions={actions} checkedCid={checkedCid} /> : null}
         </div>
       </div>
     );

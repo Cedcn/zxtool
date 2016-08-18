@@ -52,8 +52,8 @@ class ThumbCanvases extends Component {
     });
     return (
       <div className={S_S_.thumb_canvases}>
-        {thumbCanvasList}
         <a className={S_S_.add_canvas_btn} href="javascript:;" onClick={this.addCanvas}>添加页面</a>
+        {thumbCanvasList}
       </div>
     );
   }

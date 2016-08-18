@@ -49,18 +49,59 @@ class ModuleList extends Component {
 
   render() {
     return (
-      <div className={S_S_.module_list_wrapper}>
-        <div className={S_S_.title}>
-          页面元素
-        </div>
-        <div className={S_S_.module_list}>
-          <div className={S_S_.item}>
-            <a href="javascript:;" onClick={() => this.addModule('linkblock')}>热点层</a>
-          </div>
-          <div className={S_S_.item}>
-            <a href="javascript:;" onClick={() => this.addModule('image')}>图片层</a>
-          </div>
-        </div>
+      <div className={S_S_.module_list}>
+        <a href="javascript:;" onClick={() => this.addModule('linkblock')}>
+          <i className={`${S_S_.icon} iconfont icon-link`} />
+          热点
+        </a>
+        <a href="javascript:;" onClick={() => this.addModule('image')}>
+          <i className={`${S_S_.icon} iconfont icon-picture`} />
+          图片
+        </a>
+        <a href="javascript:;" onClick={() => this.addModule('image')}>
+          <i className={`${S_S_.icon} iconfont icon-text`} />
+          文本
+        </a>
+        <a href="javascript:;" onClick={() => this.addModule('image')}>
+          <i className={`${S_S_.icon} iconfont icon-video`} />
+          视频
+        </a>
+        <a href="javascript:;" onClick={() => this.addModule('image')}>
+          <i className={`${S_S_.icon} iconfont icon-wangwang`} />
+          旺旺
+        </a>
+        <a href="javascript:;" onClick={() => this.addModule('image')}>
+          <i className={`${S_S_.icon} iconfont icon-wangwang`} />
+          旺旺群
+        </a>
+        <a href="javascript:;" onClick={() => this.addModule('image')}>
+          <i className={`${S_S_.icon} iconfont icon-clock`} />
+          倒计时
+        </a>
+        <a href="javascript:;" onClick={() => this.addModule('image')}>
+          <i className={`${S_S_.icon} iconfont icon-collect`} />
+          收藏
+        </a>
+        <a href="javascript:;" onClick={() => this.addModule('image')}>
+          <i className={`${S_S_.icon} iconfont icon-qrcode`} />
+          二维码
+        </a>
+        <a href="javascript:;" onClick={() => this.addModule('image')}>
+          <i className={`${S_S_.icon} iconfont icon-like`} />
+          关注
+        </a>
+        <a href="javascript:;" onClick={() => this.addModule('image')}>
+          <i className={`${S_S_.icon} iconfont icon-shopcar`} />
+          购物车
+        </a>
+        <a href="javascript:;" onClick={() => this.addModule('image')}>
+          <i className={`${S_S_.icon} iconfont icon-like`} />
+          喜欢
+        </a>
+        <a href="javascript:;" onClick={() => this.addModule('image')}>
+          <i className={`${S_S_.icon} iconfont icon-search`} />
+          搜索框
+        </a>
       </div>
     );
   }
