@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { InputNumber } from 'antd';
+import { InputNumber, Select } from 'antd';
 import S_S_ from './work_size.scss';
+
+const Option = Select.Option;
 
 class WorkPanelSize extends Component {
   render() {
@@ -12,11 +14,17 @@ class WorkPanelSize extends Component {
         </h4>
         <div className={S_S_.field}>
           <div className={S_S_.label}>宽度：</div>
-          <InputNumber min={0} max={2000} value={width} onChange={value => actions.setWorkPanelWidth(value)} />
+          <Select defaultValue={width} style={{ width: 70 }} onChange={value => actions.setWorkPanelWidth(value)}>
+            <Option value="1920">1920</Option>
+            <Option value="950">950</Option>
+            <Option value="190">190</Option>
+          </Select>
+          <div className={S_S_.nuit}>px</div>
         </div>
         <div className={S_S_.field}>
           <div className={S_S_.label}>高度：</div>
-          <InputNumber min={0} max={2000} value={height} onChange={value => actions.setWorkPanelHeight(value)} />
+          <InputNumber min={0} max={2000} style={{ width: 70 }} value={height} onChange={value => actions.setWorkPanelHeight(value)} />
+          <div className={S_S_.nuit}>px</div>
         </div>
       </div>
     );

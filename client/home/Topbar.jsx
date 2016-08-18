@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import WorkPanelSize from '../components/topbar/WorkPanelSize';
+import { Button } from 'antd';
 import S_S_ from './topbar.scss';
 import { generateCode } from '../common/tools';
 
+const ButtonGroup = Button.Group;
 class Topbar extends Component {
   constructor(props) {
     super(props);
@@ -19,12 +21,16 @@ class Topbar extends Component {
     return (
       <div className={S_S_.topbar}>
         <div className={S_S_.left}>
-          LOGO
+          <div className={S_S_.logo}>T</div>
+          <WorkPanelSize actions={actions} {...workPanel} />
         </div>
         <div className={S_S_.right}>
-          <WorkPanelSize actions={actions} {...workPanel} />
-          <a href="javascript:;" onClick={this.generateCode}>生成代码</a>
-          <a href="/preview" target="_blank">预览</a>
+          <div className={S_S_.generate}>
+            <ButtonGroup>
+              <Button type="primary" onClick={this.generateCode}>生成代码</Button>
+              <Button type="primary" onClick={() => window.open('/preview')}>效果预览</Button>
+            </ButtonGroup>
+          </div>
         </div>
       </div>
     );

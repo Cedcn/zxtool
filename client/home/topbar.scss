@@ -12,10 +12,28 @@
   z-index: 99;
 
   .left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
 
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 100%;
+    background-color: #2489b6;
+    color: #52d1b9;
+    font-size: 22px;
+  }
+
+  .generate {
+    margin-right: 20px;
   }
 
   .right {
-
+    display: flex;
+    align-items: center;
   }
 }

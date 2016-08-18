@@ -26,6 +26,9 @@ class LeftSidebar extends Component {
     const { actions, canvasesData, originalWidth, originalHeight, checkedCid } = this.props;
     return (
       <div className={S_S_.left_sidebar}>
+        <div className={S_S_.nav}>
+          <a href="javascript:;">页面</a>
+        </div>
         <div className={S_S_.thumb_canvases_wrapper}>
           <ThumbCanvases
             actions={actions}

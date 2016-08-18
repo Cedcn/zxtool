@@ -1,11 +1,16 @@
 .work_panel_size {
   display: flex;
   flex-direction: row;
+  padding-left: 20px;
 
   .field {
     display: inline-block;
     margin-right: 10px;
     display: flex;
     align-items: center;
+  }
+
+  .nuit {
+    padding-left: 3px;
   }
 }

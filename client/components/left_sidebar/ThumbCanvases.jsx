@@ -5,7 +5,7 @@ import ThumbModules from './ThumbModules';
 
 import S_S_ from './thumb_canvases.scss';
 
-const width = 100;
+const width = 90;
 class ThumbCanvases extends Component {
   constructor(props) {
     super(props);
@@ -27,26 +27,28 @@ class ThumbCanvases extends Component {
     const height = originalHeight * scaleRatio;
     const thumbCanvasList = canvasesData.map((item, index) => {
       return (
-        <div
-          className={`${S_S_.thumb_modules_wrapper} ${checkedCid === item.cid ? S_S_.active : null}`}
-          key={index}
-          style={{ width, height }}
-          onClick={() => this.switchCanvas(item.cid)}
-        >
-          <ThumbModules
-            data={item.modules}
-            actions={actions}
-            originalWidth={originalWidth}
-            originalHeight={originalHeight}
-            scaleRatio={scaleRatio}
-          />
+        <div key={index}>
+          <div className={S_S_.index}>{index + 1}</div>
+          <div
+            className={`${S_S_.thumb_modules_wrapper} ${checkedCid === item.cid ? S_S_.active : null}`}
+            style={{ width, height }}
+            onClick={() => this.switchCanvas(item.cid)}
+          >
+            <ThumbModules
+              data={item.modules}
+              actions={actions}
+              originalWidth={originalWidth}
+              originalHeight={originalHeight}
+              scaleRatio={scaleRatio}
+            />
+          </div>
         </div>
       );
     });
     return (
       <div className={S_S_.thumb_canvases}>
-        <a href="javascript:;" onClick={this.addCanvas}>添加一个画布</a>
         {thumbCanvasList}
+        <a className={S_S_.add_canvas_btn} href="javascript:;" onClick={this.addCanvas}>添加页面</a>
       </div>
     );
   }

@@ -2,11 +2,20 @@
   padding-top: 45px;
   position: fixed;
   top: 0;
+  z-index: 90;
   height: 100vh;
+  display: flex;
+
+  .nav {
+    width: 45px;
+    background-color: #2489b6;
+    height: 100%;
+  }
 
   .thumb_canvases_wrapper {
-    width: 120px;
+    width: 110px;
     overflow: hidden;
-    background-color: rgba(249,249,249,1);
+    background-color: rgba(249, 249, 249, 1);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px
   }
 }

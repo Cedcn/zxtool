@@ -1,15 +1,30 @@
 .thumb_canvases {
   padding: 10px;
+
+  .add_canvas_btn {
+    text-align: center;
+    display: block;
+    line-height: 2;
+    background-color: #75cfbe;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+}
+
+.index {
+  display: inline-block;
 }
 
 .thumb_modules_wrapper {
   display: block;
-  height: 100px;
-  border: 1px solid #ddd;
+  height: 90px;
+  border: 1px solid #d5d5d5;
   margin-bottom: 20px;
   cursor: pointer;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px;
 
   &.active {
-    border: 1px solid red;
+    border: 1px solid rgba(255, 106, 0, 0.73);
   }
 }
