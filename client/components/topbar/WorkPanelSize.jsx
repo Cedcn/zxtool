@@ -15,9 +15,9 @@ class WorkPanelSize extends Component {
         <div className={S_S_.field}>
           <div className={S_S_.label}>宽度：</div>
           <Select defaultValue={width} style={{ width: 70 }} onChange={value => actions.setWorkPanelWidth(value)}>
-            <Option value="1920">1920</Option>
-            <Option value="950">950</Option>
-            <Option value="190">190</Option>
+            <Option value={1920}>1920</Option>
+            <Option value={950}>950</Option>
+            <Option value={190}>190</Option>
           </Select>
           <div className={S_S_.nuit}>px</div>
         </div>

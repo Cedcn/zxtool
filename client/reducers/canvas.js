@@ -7,7 +7,7 @@ const initialCanvasState = [
   {
     cid: '123',
     modules: [],
-    checkedMid: null,
+    checkedMid: '1212',
   },
 ];
 

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-
+import Scale from '../../common/Scale';
 import S_S_ from './work_panel.scss';
 
 class WorkPanel extends Component {
@@ -18,7 +18,8 @@ class WorkPanel extends Component {
       height,
     };
     return (
-      <div className={S_S_.work_panel_wrapper}>
+      <div className={S_S_.work_panel_wrapper} style={style}>
+        <Scale width={width} height={height} />
         <div className={S_S_.work_panel} style={style} onMouseDown={this.mouseDown}>
           { this.props.children }
         </div>
