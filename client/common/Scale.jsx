@@ -14,7 +14,7 @@ class Scale extends Component {
           jsx = <span key={i} className={`${S_S_.diff} ${S_S_.primary}`}></span>;
         }
         if (i % 100 === 0) {
-          jsx = <span key={i} className={`${S_S_.diff} ${S_S_.long}`}>{i}</span>;
+          jsx = <span key={i} className={`${S_S_.diff} ${S_S_.long}`}><div className={S_S_.text}>{i}</div></span>;
         }
         xScaleList.push(jsx);
       }
@@ -27,7 +27,7 @@ class Scale extends Component {
           jsx = <div key={i} className={`${S_S_.diff} ${S_S_.primary}`}></div>;
         }
         if (i % 100 === 0) {
-          jsx = <div key={i} className={`${S_S_.diff} ${S_S_.long}`}>{i}</div>;
+          jsx = <div key={i} className={`${S_S_.diff} ${S_S_.long}`}><div className={S_S_.text}>{i}</div></div>;
         }
         yScaleList.push(jsx);
       }

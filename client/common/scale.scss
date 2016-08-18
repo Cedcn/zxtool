@@ -1,5 +1,10 @@
+.scale {
+  color: #999;
+}
+
 .x_scale {
   position: absolute;
+  overflow: hidden;
   z-index: 88;
   height: 20px;
   display: flex;
@@ -18,13 +23,19 @@
 
     &.long {
       height: 20px;
-      padding-left: 2px;
+      position: relative;
+
+      .text {
+        position: absolute;
+        left: 2px;
+      }
     }
   }
 }
 
 .y_scale {
   position: absolute;
+  overflow: hidden;
   z-index: 88;
   width: 20px;
   display: flex;
@@ -47,8 +58,15 @@
       padding-left: 3px;
       padding-top: 2px;
       padding-right: 7px;
-      word-wrap: break-word;
       line-height: 12px;
+      position: relative;
+
+      .text {
+        position: absolute;
+        width: 10px;
+        word-wrap: break-word;
+        top: 2px;
+      }
     }
   }
 }

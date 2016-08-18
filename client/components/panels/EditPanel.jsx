@@ -20,7 +20,7 @@ class Panel extends Component {
   }
 
   render() {
-    const { data, minLeft, minTop, maxLeft, maxTop, actions } = this.props;
+    const { data, cid, minLeft, minTop, maxLeft, maxTop, actions } = this.props;
     if (!data) {
       return (
         <div>23423</div>
@@ -82,7 +82,7 @@ class Panel extends Component {
     });
     return (
       <div className={S_S_.edit_panel}>
-        <a href="javascript:;" onClick={() => actions.delete_module('123', data.mid)}>删除</a>
+        <a href="javascript:;" onClick={() => actions.delete_module(cid, data.mid)}>删除</a>
         <div className={S_S_.name}>
           {name}
           <div>{data.mid}</div>

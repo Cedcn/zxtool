@@ -5,7 +5,6 @@ import ThumbModules from './ThumbModules';
 
 import S_S_ from './thumb_canvases.scss';
 
-const width = 90;
 class ThumbCanvases extends Component {
   constructor(props) {
     super(props);
@@ -23,11 +22,17 @@ class ThumbCanvases extends Component {
   }
   render() {
     const { actions, canvasesData, originalWidth, originalHeight, checkedCid } = this.props;
-    const scaleRatio = width / originalWidth;
-    const height = originalHeight * scaleRatio;
+    let width = 90;
+    let scaleRatio = width / originalWidth;
+    let height = originalHeight * scaleRatio;
+    if (height > 100) {
+      height = 100;
+      scaleRatio = height / originalHeight;
+      width = originalWidth * scaleRatio;
+    }
     const thumbCanvasList = canvasesData.map((item, index) => {
       return (
-        <div key={index}>
+        <div key={index} className={S_S_.thumb_modules_container}>
           <div className={S_S_.index}>{index + 1}</div>
           <div
             className={`${S_S_.thumb_modules_wrapper} ${checkedCid === item.cid ? S_S_.active : null}`}
