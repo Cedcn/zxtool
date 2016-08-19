@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { InputNumber, Input, Button, Select, Switch, Icon } from 'antd';
-
+import Color from '../../common/Color';
 import { getModule } from '../../common/tools';
 import S_S_ from './index.scss';
 
@@ -56,6 +56,11 @@ class EditModulePanel extends Component {
               unCheckedChildren={<Icon type="cross" />}
               onChange={this.changeInputNumber(param.name)}
             />
+          );
+        }
+        case 'color': {
+          return (
+            <Color value={data[param.name]} onChange={this.changeInputNumber(param.name)} />
           );
         }
       }
@@ -114,7 +119,14 @@ class EditModulePanel extends Component {
       <div className={S_S_.edit_module_panel}>
         <div className={S_S_.name}>
           {name}
-          <Button size="small" type="ghost" onClick={() => actions.delete_module(cid, data.mid)}>
+          <Button
+            size="small"
+            type="ghost"
+            onClick={() => {
+              actions.delete_module(cid, data.mid);
+              actions.switchPanel('canvas');
+            }}
+          >
             删除
           </Button>
         </div>

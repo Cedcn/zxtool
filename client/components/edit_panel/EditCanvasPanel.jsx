@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { InputNumber, Input, Button, Select, Switch, Icon } from 'antd';
-
+import Color from '../../common/Color';
 import S_S_ from './index.scss';
 
 class EditCanvasPanel extends Component {
@@ -24,16 +24,27 @@ class EditCanvasPanel extends Component {
   }
 
   render() {
-    const { data, cid, actions } = this.props;
-
+    const { data } = this.props;
     return (
       <div className={S_S_.edit_canvas_panel}>
         <h4 className={S_S_.section_header}>基础属性</h4>
         <div className={S_S_.group}>
-          <div className={S_S_.filed} style={{ width: '50%' }}>
+          <div className={S_S_.filed} style={{ width: '100%' }}>
             <div className="label">背景颜色:</div>
-            <InputNumber value={data.elmX} onChange={this.changeInputNumber('elmX')} />
-            <span className={S_S_.unit}>px</span>
+            <Color value={data.backgroudColor} onChange={this.changeInputNumber('backgroudColor')} />
+          </div>
+          <div className={S_S_.filed} style={{ width: '100%' }}>
+            <div className="label">背景图片:</div>
+            <Input value={data.backgroudImage} onChange={this.change('backgroudImage')} />
+          </div>
+          <div className={S_S_.filed} style={{ width: '100%' }}>
+            <div className="label">是否重复:</div>
+            <Switch
+              checked={data.backgroundRepeat}
+              checkedChildren={<Icon type="check" />}
+              unCheckedChildren={<Icon type="cross" />}
+              onChange={this.changeInputNumber('backgroundRepeat')}
+            />
           </div>
         </div>
       </div>

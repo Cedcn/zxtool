@@ -11,6 +11,7 @@ class ThumbCanvases extends Component {
     const { actions } = props;
     this.switchCanvas = cid => {
       if (this.props.checkedCid === cid) return;
+      actions.switchPanel('canvas');
       actions.checkCanvas(cid);
     };
 
