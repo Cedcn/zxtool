@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { InputNumber, Input, Button, Select, Switch, Icon } from 'antd';
 
 import { getModule } from '../../common/tools';
-import S_S_ from './edit_panel.scss';
+import S_S_ from './index.scss';
 
 const Option = Select.Option;
 
-class Panel extends Component {
+class EditModulePanel extends Component {
   change(name) {
     return e => {
       this.updateValue(name, e.target.value);
@@ -28,11 +28,6 @@ class Panel extends Component {
 
   render() {
     const { data, cid, minLeft, minTop, maxLeft, maxTop, actions } = this.props;
-    if (!data) {
-      return (
-        <div>23423</div>
-      );
-    }
     const structure = getModule(data.template).getStructure();
     const { name, parameters } = structure;
     const getInput = (param) => {
@@ -47,8 +42,6 @@ class Panel extends Component {
             if (item.checked) defaultValue = item.value;
             return <Option key={item.value}>{item.label}</Option>;
           });
-          console.log(optionsList);
-
           return (
             <Select defaultValue={defaultValue} onChange={this.changeInputNumber(param.name)} style={{ width: '100%' }}>
               {optionsList}
@@ -108,9 +101,9 @@ class Panel extends Component {
 
       return (
         <div className={S_S_.section_wrap} key={index}>
-          <div className={S_S_.section_header}>
+          <h4 className={S_S_.section_header}>
             {category.title}
-          </div>
+          </h4>
           <div className={S_S_.section_body}>
             {paramList}
           </div>
@@ -118,7 +111,7 @@ class Panel extends Component {
       );
     });
     return (
-      <div className={S_S_.edit_panel}>
+      <div className={S_S_.edit_module_panel}>
         <div className={S_S_.name}>
           {name}
           <Button size="small" type="ghost" onClick={() => actions.delete_module(cid, data.mid)}>
@@ -137,7 +130,7 @@ class Panel extends Component {
 }
 
 
-Panel.propTypes = {
+EditModulePanel.propTypes = {
   structure: PropTypes.object,
   data: PropTypes.object,
   actions: PropTypes.object,
@@ -148,4 +141,4 @@ Panel.propTypes = {
   cid: PropTypes.string,
 };
 
-export default Panel;
+export default EditModulePanel;

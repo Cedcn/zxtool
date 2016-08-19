@@ -22,6 +22,7 @@ class Modules extends Component {
       const { cid } = this.props;
 
       return () => {
+        actions.switchPanel('module');
         if (this.props.checkedMid === mid) return;
         actions.checkModule(cid, mid);
         actions.goBehind(cid, mid);

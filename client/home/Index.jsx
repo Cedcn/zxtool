@@ -7,7 +7,8 @@ import Topbar from './Topbar';
 import LeftSidebar from './LeftSidebar';
 
 import Canvases from '../components/workbench/Canvases';
-import EditPanel from '../components/panels/EditPanel';
+import EditPanel from '../components/edit_panel/Index';
+
 import WorkPanel from '../components/panels/WorkPanel';
 
 class Home extends Component {
@@ -28,9 +29,8 @@ class Home extends Component {
   }
 
   render() {
-    const { canvasesData, actions, workPanel } = this.props;
+    const { canvasesData, actions, workPanel, editPanel } = this.props;
     const canvasDada = _.find(canvasesData, item => { return item.cid === workPanel.checkedCid; });
-    const editData = _.find(canvasDada.modules, item => { return item.mid === canvasDada.checkedMid; });
 
     return (
       <div className={`page ${S_S_.page_home}`}>
@@ -46,6 +46,7 @@ class Home extends Component {
           {...workPanel}
           onMouseDown={() => {
             actions.checkModule(workPanel.checkedCid, null);
+            actions.switchPanel('canvas');
           }}
         >
           <Canvases
@@ -58,9 +59,8 @@ class Home extends Component {
           />
         </WorkPanel>
         <EditPanel
-          minLeft={0}
-          minTop={0}
-          data={editData}
+          canvasDada={canvasDada}
+          panel={editPanel.panel}
           cid={workPanel.checkedCid}
           actions={actions}
         />
@@ -73,6 +73,7 @@ Home.propTypes = {
   canvasesData: PropTypes.array,
   workPanel: PropTypes.object,
   actions: PropTypes.object,
+  editPanel: PropTypes.object,
 };
 
 module.exports = Home;

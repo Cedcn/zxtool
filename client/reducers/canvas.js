@@ -7,7 +7,9 @@ const initialCanvasState = [
   {
     cid: '123',
     modules: [],
-    checkedMid: '1212',
+    checkedMid: null,
+    backgroudColor: '#fff',
+    backgroudImage: null,
   },
 ];
 
@@ -21,6 +23,11 @@ function canvasesData(state = localCanvasesData || initialCanvasState, action) {
     case TYPE.DELETE_CANVAS: {
       const canvasIndex = _.findIndex(newState, item => { return item.cid === action.cid; });
       newState.splice(canvasIndex, 1);
+      break;
+    }
+    case TYPE.UPDATE_CANVAS: {
+      const canvasIndex = _.findIndex(newState, item => { return item.cid === action.cid; });
+      newState[canvasIndex] = { ...newState[canvasIndex], ...action.data };
       break;
     }
     case TYPE.UPDATE_MODULE: {

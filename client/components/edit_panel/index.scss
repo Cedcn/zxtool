@@ -9,6 +9,35 @@
   padding-top: 45px;
   z-index: 98;
 
+  .switch_panel {
+    display: flex;
+    text-align: center;
+    height: 28px;
+    line-height: 28px;
+    background-color: #dedede;
+
+    a.item {
+      color: #787878;
+      display: block;
+      width: 50%;
+      background-color: #ddd;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.15) inset;
+      transition: all 0.3s;
+    }
+
+    :global(a.active) {
+      color: #000;
+      font-weight: bold;
+      background-color: #dedede;
+      transition: all 0.3s;
+      box-shadow: none;
+    }
+
+    :global(a.disable) {
+      cursor: no-drop;
+    }
+  }
+
   .name {
     display: flex;
     justify-content: space-between;

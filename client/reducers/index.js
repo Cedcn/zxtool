@@ -4,6 +4,7 @@ import * as TYPE from '../actions/ActionTypes';
 
 import canvasesData from './canvas';
 import workPanel from './work_panel';
+import editPanel from './edit_panel';
 
 // modal reducer
 const initialModalState = {
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   modal: modalSwitch,
   canvasesData,
   workPanel,
+  editPanel,
 });
 
 
