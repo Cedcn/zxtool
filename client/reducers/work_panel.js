@@ -8,7 +8,7 @@ const initialDataState = {
   isShowStatusBar: true,
   checkedCid: '123',
   width: 950,
-  height: 300,
+  height: 500,
 };
 
 function workPanel(state = localWorkPanel || initialDataState, action) {

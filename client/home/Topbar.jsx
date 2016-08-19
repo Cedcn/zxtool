@@ -27,9 +27,26 @@ class Topbar extends Component {
         <div className={S_S_.right}>
           <div className={S_S_.generate}>
             <ButtonGroup>
-              <Button type="primary" onClick={this.generateCode}>生成代码</Button>
-              <Button type="primary" onClick={() => window.open('/preview')}>效果预览</Button>
+              <Button className={S_S_.btn} type="ghost" onClick={this.generateCode}>
+                <i className="iconfont icon-code" />
+                生成代码
+              </Button>
+              <Button className={S_S_.btn} type="ghost" onClick={() => window.open('/preview')}>
+                <i className="iconfont icon-preview" />
+                效果预览
+              </Button>
             </ButtonGroup>
+          </div>
+          <a className={S_S_.message} href="javascript:;">
+            <i className="iconfont icon-message" />
+          </a>
+          <a className={S_S_.message} href="javascript:;">
+            <i className="iconfont icon-setting" />
+          </a>
+          <div className={S_S_.outh}>
+            <a className={S_S_.sign_btn} href="/login">登陆</a>
+            <span>/</span>
+            <a className={S_S_.sign_btn} href="/signup">注册</a>
           </div>
         </div>
       </div>
