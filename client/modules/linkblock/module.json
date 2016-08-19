@@ -2,13 +2,24 @@
   "name": "linkblock",
   "description": "这是个热区",
   "parameters": [{
-    "title": "元素的类别",
+    "title": "热点属性",
     "unfold": true,
     "section": [
       {
-        "label": "分类",
-        "name": "classify",
-        "type": "text"
+        "label": "链接地址",
+        "name": "link",
+        "type": "text",
+        "value": "#"
+      }, {
+        "label": "链接提示文字",
+        "name": "hint",
+        "type": "text",
+        "value": "#"
+      }, {
+        "label": "是否新窗口打开",
+        "name": "isBlank",
+        "type": "switch",
+        "value": true
       }
     ]
   }]

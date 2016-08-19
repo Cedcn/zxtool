@@ -5,8 +5,8 @@ class Module extends Component {
     return require('./module.json');
   }
   static getTemplate(data) {
-    const { mid } = data;
-    return `<div>${mid}</div>`;
+    const { link, hint, isBlank } = data;
+    return `<a href="${link}" alt="${hint}" target="${isBlank ? '_blank' : '_self'}" style="width: 100%; height:100%; display:block;"></a>`;
   }
 
   render() {

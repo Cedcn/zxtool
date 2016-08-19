@@ -1,22 +1,29 @@
 import React, { Component, PropTypes } from 'react';
-import { InputNumber, Input } from 'antd';
+import { InputNumber, Input, Button, Select, Switch, Icon } from 'antd';
 
 import { getModule } from '../../common/tools';
 import S_S_ from './edit_panel.scss';
 
-class Panel extends Component {
-  constructor(props) {
-    super(props);
-    const { actions } = this.props;
+const Option = Select.Option;
 
-    this.change = name => {
-      return e => {
-        const { data, cid } = this.props;
-        const obj = {};
-        obj[name] = Number(e.target.value);
-        actions.updateModule(cid, data.mid, obj);
-      };
+class Panel extends Component {
+  change(name) {
+    return e => {
+      this.updateValue(name, e.target.value);
     };
+  }
+
+  changeInputNumber(name) {
+    return value => {
+      this.updateValue(name, value);
+    };
+  }
+
+  updateValue(name, value) {
+    const { data, cid, actions } = this.props;
+    const obj = {};
+    obj[name] = value;
+    actions.updateModule(cid, data.mid, obj);
   }
 
   render() {
@@ -28,33 +35,63 @@ class Panel extends Component {
     }
     const structure = getModule(data.template).getStructure();
     const { name, parameters } = structure;
-    const getInput = (type, param) => {
-      switch (type) {
+    const getInput = (param) => {
+      switch (param.type) {
         case 'number':
-          return <input value={data[param]} onChange={this.change(param)} />;
+          return <InputNumber value={data[param.name]} onChange={this.changeInputNumber(param.name)} />;
         case 'text':
-          return <input value={data[param]} onChange={this.change(param)} />;
+          return <Input value={data[param.name]} onChange={this.change(param.name)} />;
+        case 'select': {
+          let defaultValue;
+          const optionsList = param.options.map((item) => {
+            if (item.checked) defaultValue = item.value;
+            return <Option key={item.value}>{item.label}</Option>;
+          });
+          console.log(optionsList);
+
+          return (
+            <Select defaultValue={defaultValue} onChange={this.changeInputNumber(param.name)} style={{ width: '100%' }}>
+              {optionsList}
+            </Select>
+          );
+        }
+        case 'switch': {
+          return (
+            <Switch
+              checked={data[param.name]}
+              checkedChildren={<Icon type="check" />}
+              unCheckedChildren={<Icon type="cross" />}
+              onChange={this.changeInputNumber(param.name)}
+            />
+          );
+        }
       }
     };
 
     const baseAttrs = (
       <div>
-        <div className={S_S_.section_header}>基础属性</div>
-        <div className={S_S_.filed} style={{ width: '50%' }}>
-          <div className="label">X位置:</div>
-          <input value={data.elmX} onChange={this.change('elmX')} />
-        </div>
-        <div className={S_S_.filed} style={{ width: '50%' }}>
-          <div className="label">Y位置:</div>
-          <input value={data.elmY} onChange={this.change('elmY')} />
-        </div>
-        <div className={S_S_.filed} style={{ width: '50%' }}>
-          <div className="label">宽度:</div>
-          <input value={data.elmW} onChange={this.change('elmW')} />
-        </div>
-        <div className={S_S_.filed} style={{ width: '50%' }}>
-          <div className="label">高度:</div>
-          <input value={data.elmH} onChange={this.change('elmH')} />
+        <h4 className={S_S_.section_header}>基础属性</h4>
+        <div className={S_S_.group}>
+          <div className={S_S_.filed} style={{ width: '50%' }}>
+            <div className="label">X轴:</div>
+            <InputNumber value={data.elmX} onChange={this.changeInputNumber('elmX')} />
+            <span className={S_S_.unit}>px</span>
+          </div>
+          <div className={S_S_.filed} style={{ width: '50%' }}>
+            <div className="label">Y轴:</div>
+            <InputNumber value={data.elmY} onChange={this.changeInputNumber('elmY')} />
+            <span className={S_S_.unit}>px</span>
+          </div>
+          <div className={S_S_.filed} style={{ width: '50%' }}>
+            <div className="label">宽度:</div>
+            <InputNumber value={data.elmW} onChange={this.changeInputNumber('elmW')} />
+            <span className={S_S_.unit}>px</span>
+          </div>
+          <div className={S_S_.filed} style={{ width: '50%' }}>
+            <div className="label">高度:</div>
+            <InputNumber value={data.elmH} onChange={this.changeInputNumber('elmH')} />
+            <span className={S_S_.unit}>px</span>
+          </div>
         </div>
       </div>
     );
@@ -62,9 +99,9 @@ class Panel extends Component {
     const categoryList = parameters.map((category, index) => {
       const paramList = category.section.map((param, sub) => {
         return (
-          <div className={S_S_.filed} key={sub} style={{ width: param.per || '50%' }}>
+          <div className={S_S_.filed} key={sub} style={{ width: param.per || '100%' }}>
             <div className="label">{param.label}:</div>
-            {getInput(param.type, param.name)}
+            {getInput(param)}
           </div>
         );
       });
@@ -82,10 +119,11 @@ class Panel extends Component {
     });
     return (
       <div className={S_S_.edit_panel}>
-        <a href="javascript:;" onClick={() => actions.delete_module(cid, data.mid)}>删除</a>
         <div className={S_S_.name}>
           {name}
-          <div>{data.mid}</div>
+          <Button size="small" type="ghost" onClick={() => actions.delete_module(cid, data.mid)}>
+            删除
+          </Button>
         </div>
         <div className={S_S_.baseAttrs}>
           {baseAttrs}

@@ -5,7 +5,7 @@
   "elmY": 10,
   "elmW": 200,
   "elmH": 100,
-  "isRatio": true,
+  "isRatio": false,
   "isResize": true,
   "parameters": [{
     "title": "图片信息",
@@ -15,14 +15,8 @@
         "label": "图片链接地址",
         "name": "imagelink",
         "type": "text",
-        "value": "https://dn-geekpark-new.qbox.me/uploads/image/file/e0/01/e001e8c492cedea591b7cc7c69d14e2b.jpg?imageView2/2/w/1488/interlace/1/q/88/",
+        "value": "https://dn-geekpark-new.qbox.me/uploads/image/file/4d/1d/4d1daf9cfbb0e800544c03a7e05447a4.jpg?imageView2/2/w/1488/interlace/1/q/88/",
         "per": "100%"
-      },
-      {
-        "label": "分类",
-        "name": "aas",
-        "type": "number",
-        "value": "123123"
       }
     ]
   }]

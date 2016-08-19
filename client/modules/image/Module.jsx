@@ -6,14 +6,14 @@ class Module extends Component {
     return structure;
   }
   static getTemplate(data) {
-    const { imagelink, aas } = data;
-    return `<div><img src="${imagelink}" style="width: 100%">${aas}</div>`;
+    const { imagelink } = data;
+    return `<div style="width: 100%; height: 100%; background-image: url(${imagelink}); background-size: cover;"></div>`;
   }
   render() {
     if (!this.props.data) return false;
 
     return (
-      <div dangerouslySetInnerHTML={{ __html: Module.getTemplate(this.props.data) }} />
+      <div style={{ width: '100%', height: '100%', display: 'block' }} dangerouslySetInnerHTML={{ __html: Module.getTemplate(this.props.data) }} />
     );
   }
 }

@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import UUID from 'uuid-js';
 import S_S_ from './module_list.scss';
 
-import { Linkblock, Image } from 'modules';
-
+import { getModule } from '../../common/tools';
 class ModuleList extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +10,7 @@ class ModuleList extends Component {
     this.addModule = template => {
       const { checkedCid } = this.props;
       const uuid1 = UUID.create(1).toString();
-      const structure = this.getStructure(template);
+      const structure = getModule(template).getStructure();
       const {
         elmX = 10,
         elmW = 100,
@@ -35,15 +34,6 @@ class ModuleList extends Component {
 
       actions.createModule(checkedCid, uuid1, { template, elmX, elmY, elmW, elmH, isResize, isRatio, minWidth, minHeight, maxWidth, maxHeight, ...paramsObj });
       actions.checkModule(checkedCid, uuid1);
-    };
-
-    this.getStructure = template => {
-      switch (template) {
-        case 'linkblock':
-          return Linkblock.getStructure();
-        case 'image':
-          return Image.getStructure();
-      }
     };
   }
 
