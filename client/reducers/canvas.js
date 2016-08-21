@@ -8,17 +8,17 @@ const initialCanvasState = [
     cid: '123',
     modules: [],
     checkedMid: null,
-    backgroudColor: { r: 255, g: 255, b: 255, a: 1 },
-    backgroudImage: null,
+    backgroundColor: { r: 255, g: 255, b: 255, a: 1 },
+    backgroundImage: null,
     backgroundRepeat: false,
   },
 ];
 
 function canvasesData(state = localCanvasesData || initialCanvasState, action) {
-  const newState = state.slice();
+  let newState = _.cloneDeep(state);
   switch (action.type) {
     case TYPE.CREATE_CANVAS: {
-      newState.push({ modules: [], cid: action.cid });
+      newState.push({ ...initialCanvasState[0], cid: action.cid });
       break;
     }
     case TYPE.DELETE_CANVAS: {
@@ -60,6 +60,10 @@ function canvasesData(state = localCanvasesData || initialCanvasState, action) {
     case TYPE.CHECK_MODULE: {
       const canvasIndex = _.findIndex(newState, item => { return item.cid === action.cid; });
       newState[canvasIndex].checkedMid = action.checkedMid;
+      break;
+    }
+    case TYPE.RESET_CANVAS: {
+      newState = initialCanvasState;
       break;
     }
   }

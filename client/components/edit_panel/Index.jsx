@@ -9,7 +9,6 @@ class EditPanel extends Component {
   render() {
     const { canvasDada, cid, actions, panel } = this.props;
     const editData = _.find(canvasDada.modules, item => { return item.mid === canvasDada.checkedMid; });
-
     return (
       <div className={S_S_.edit_panel}>
         <div className={S_S_.switch_panel}>

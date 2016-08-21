@@ -1,5 +1,5 @@
 import * as TYPE from '../actions/ActionTypes';
-
+import _ from 'lodash';
 // module reducer
 const localWorkPanel = JSON.parse(window.localStorage.getItem('workPanel'));
 const initialDataState = {
@@ -12,7 +12,7 @@ const initialDataState = {
 };
 
 function workPanel(state = localWorkPanel || initialDataState, action) {
-  const newState = state;
+  const newState = _.cloneDeep(state);
   switch (action.type) {
     case TYPE.LIMITSCOPE:
       return { ...newState, islimitScope: action.isLimit };
@@ -26,6 +26,9 @@ function workPanel(state = localWorkPanel || initialDataState, action) {
       return { ...newState, height: action.height };
     case TYPE.CHECK_CANVAS: {
       return { ...newState, checkedCid: action.checkedCid };
+    }
+    case TYPE.RESET_WORKPANEL: {
+      return initialDataState;
     }
     default:
       return newState;

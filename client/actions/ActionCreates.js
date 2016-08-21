@@ -38,6 +38,9 @@ export const setWorkPanelWidth = width =>
 export const setWorkPanelHeight = height =>
   ({ type: TYPE.WORKPANELHEIGHT, height });
 
+export const reset_workpanel = () =>
+  ({ type: TYPE.RESET_WORKPANEL });
+
 
 export const createCanvas = cid =>
   ({ type: TYPE.CREATE_CANVAS, cid });
@@ -51,6 +54,12 @@ export const deleteCanvas = cid =>
 export const checkCanvas = checkedCid =>
   ({ type: TYPE.CHECK_CANVAS, checkedCid });
 
+export const reset_canvas = () =>
+  ({ type: TYPE.RESET_CANVAS });
+
 
 export const switchPanel = panel =>
   ({ type: TYPE.SWITCH_PANEL, panel });
+
+export const reset_editpanel = () =>
+  ({ type: TYPE.RESET_EDITPANEL });

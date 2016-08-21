@@ -31,11 +31,11 @@ class EditCanvasPanel extends Component {
         <div className={S_S_.group}>
           <div className={S_S_.filed} style={{ width: '100%' }}>
             <div className="label">背景颜色:</div>
-            <Color value={data.backgroudColor} onChange={this.changeInputNumber('backgroudColor')} />
+            <Color value={data.backgroundColor} onChange={this.changeInputNumber('backgroundColor')} />
           </div>
           <div className={S_S_.filed} style={{ width: '100%' }}>
             <div className="label">背景图片:</div>
-            <Input value={data.backgroudImage} onChange={this.change('backgroudImage')} />
+            <Input value={data.backgroundImage} onChange={this.change('backgroundImage')} />
           </div>
           <div className={S_S_.filed} style={{ width: '100%' }}>
             <div className="label">是否重复:</div>
