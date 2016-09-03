@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import S_S_ from './canvases.scss';
 
-import Dragresize from '../../common/Dragresize';
+import Dragresize from 'dragresize';
 // import Module from '../modules/linkblock/Module';
 import { Linkblock, Image } from 'modules';
 
@@ -31,7 +31,7 @@ class Modules extends Component {
     };
   }
   render() {
-    const { modulesData, checkedMid, maxLeft, maxTop, islimitScope } = this.props;
+    const { modulesData, checkedMid, maxLeft, maxTop } = this.props;
     if (!modulesData) return;
     const modulesList = modulesData.map((item, index) => {
       const loadModule = item.template === 'linkblock' ? Linkblock : Image;
@@ -42,7 +42,6 @@ class Modules extends Component {
           minTop={0}
           maxLeft={maxLeft}
           maxTop={maxTop}
-          islimitScope={islimitScope}
           elmX={item.elmX}
           elmY={item.elmY}
           elmW={item.elmW}
@@ -56,7 +55,7 @@ class Modules extends Component {
           maxHeight={item.maxHeight}
           onMouseDown={this.check(item.mid)}
           onMouseMove={this.change(item.mid)}
-          onResizeHandle={this.change(item.mid)}
+          onResize={this.change(item.mid)}
         >
           {React.createElement(loadModule, { data: item })}
         </Dragresize>
