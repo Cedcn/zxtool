@@ -23,12 +23,7 @@ export const createScript = url => {
   }
 };
 
-
-export const generateCode = (workPanel, canvasesData) => {
-  const modules = canvasesData[0].modules;
-  const moduleList = modules.map(item => {
-    const elements = getModule(item.template).getTemplate(item);
-    return `<div style="position: absolute; overflow: hidden; width: ${item.elmW}px; height: ${item.elmH}px; left: ${item.elmX}px; top: ${item.elmY}px;">${elements}</div>`;
-  });
-  return `<div style="position: relative; width: ${workPanel.width}px; height: ${workPanel.height}px">${moduleList.join('')}</div>`;
+export const colorToRgba = color => {
+  const { r, g, b, a } = color;
+  return `rgba(${r}, ${g}, ${b}, ${a})`;
 };

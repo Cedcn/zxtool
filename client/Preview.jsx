@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import { generateCode } from './common/tools';
+import generateCode from './common/generateCode';
 import './global.scss';
 
 const Preview = () => {
@@ -15,5 +15,5 @@ const Preview = () => {
 
 render(
   <Preview />,
-  window.document.getElementById('preview')
+  window.document.getElementById('preview-list')
 );

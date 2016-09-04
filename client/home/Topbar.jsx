@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import WorkPanelSize from '../components/topbar/WorkPanelSize';
 import { Button, Modal } from 'antd';
 import S_S_ from './topbar.scss';
-import { generateCode } from '../common/tools';
+import generateCode from '../common/generateCode';
 import Setting from '../components/setting/Setting';
 
 const ButtonGroup = Button.Group;
