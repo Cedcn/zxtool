@@ -4,16 +4,19 @@ const router = express.Router();
 const signup = require('../controllers/account/signup_controller');
 const login = require('../controllers/account/login_controller');
 
-router.get('/', (req, res) => {
-  res.render('index', { title: 'Cedcn' });
-});
+const { isAuthenticated } = require('../middlewares/auth');
 
-router.get('/test', (req, res) => {
+router.get('/', (req, res) => {
   res.render('index', { title: 'Cedcn' });
 });
 
 router.get('/preview', (req, res) => {
   res.render('preview');
+});
+
+router.get('/control', isAuthenticated, (req, res) => {
+  req.flash('info', 'hello!');
+  res.render('index', { title: 'Control' });
 });
 
 router.route('/signup')
@@ -23,5 +26,10 @@ router.route('/signup')
 router.route('/login')
   .get(login.show)
   .post(login.create);
+
+router.get('logout', (req, res) => {
+  req.logout();
+  res.redirect('back');
+});
 
 module.exports = router;

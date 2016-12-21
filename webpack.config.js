@@ -22,6 +22,7 @@ const config = {
     ],
     extensions: ['', '.js', '.jsx'],
     alias: {
+      common: 'client/common',
       modules: 'client/modules/index.js',
     },
   },

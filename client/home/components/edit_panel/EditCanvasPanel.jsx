@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { InputNumber, Input, Button, Select, Switch, Icon } from 'antd';
-import Color from '../../common/Color';
+import Color from 'common/Color';
 import S_S_ from './index.scss';
 
 class EditCanvasPanel extends Component {

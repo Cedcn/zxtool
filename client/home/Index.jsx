@@ -6,10 +6,10 @@ import S_S_ from './index.scss';
 import Topbar from './Topbar';
 import LeftSidebar from './LeftSidebar';
 
-import Canvases from '../components/workbench/Canvases';
-import EditPanel from '../components/edit_panel/Index';
+import Canvases from './components/workbench/Canvases';
+import EditPanel from './components/edit_panel/Index';
 
-import WorkPanel from '../components/panels/WorkPanel';
+import WorkPanel from './components/panels/WorkPanel';
 
 class Home extends Component {
   constructor(props) {

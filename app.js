@@ -1,16 +1,18 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const fs = require('fs');
+// const fs = require('fs');
 const debug = require('debug')('zxtool:db');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
+const passport = require('passport');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs/access.log'), { flags: 'a' });
+const flash = require('flash');
+// const accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs/access.log'), { flags: 'a' });
 
-const { authUser } = require('./middlewares/auth');
+// const { authUser } = require('./middlewares/auth');
 
 global.isDev = app.locals.isDev = app.get('env') === 'development';
 
@@ -50,7 +52,7 @@ app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // logger
-app.use(morgan('dev', { stream: accessLogStream }));
+app.use(morgan('dev'));
 
 // parse application/json
 app.use(bodyParser.json());
@@ -75,7 +77,18 @@ app.use(session({
   cookise: { maxAge: 60000 },
 }));
 
-app.use(authUser());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+passport.use('local', require('./middlewares/strategy').localStrategy);
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
 
 app.use('/', routes);
 

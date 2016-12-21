@@ -9,12 +9,20 @@ import AppWrapper from './common/AppWrapper';
 const Home = (nextState, callback) => {
   require.ensure([], require => {
     callback(null, require('./home/Index'));
-  }, 'index');
+  }, 'home');
+};
+
+
+const Control = (nextState, callback) => {
+  require.ensure([], require => {
+    callback(null, require('./control/Index'));
+  }, 'control');
 };
 
 const MainRoute = (
   <Route path="/" component={AppWrapper}>
     <IndexRoute getComponent={Home} />
+    <Route path="control" getComponent={Control} />
   </Route>
 );
 

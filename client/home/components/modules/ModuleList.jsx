@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import UUID from 'uuid-js';
 import S_S_ from './module_list.scss';
 
-import { getModule } from '../../common/tools';
+import { getModule } from 'common/tools';
 class ModuleList extends Component {
   constructor(props) {
     super(props);

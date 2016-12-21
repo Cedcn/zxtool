@@ -18,11 +18,12 @@ html(lang="en")
   body
     form(action="/login", method="POST")
       .field
-        label 用户名
-        input(type="text", name="username")
+        input(type="text", name="username", placeholder="用户名/邮箱")
       .field
-        label 密码
-        input(type="text", name="password")
+        input(type="password", name="password", placeholder="密码")
       .field
         button(type="submit")
           | 登陆
+      for message in flash
+        a.alert(class='alert-' + message.type)
+          p= message.message

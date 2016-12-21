@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import ThumbCanvases from '../components/left_sidebar/ThumbCanvases';
-import ModuleList from '../components/modules/ModuleList';
+import ThumbCanvases from './components/left_sidebar/ThumbCanvases';
+import ModuleList from './components/modules/ModuleList';
 import UUID from 'uuid-js';
 
 import S_S_ from './left_sidebar.scss';

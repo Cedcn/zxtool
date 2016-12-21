@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Scale from '../../common/Scale';
+import Scale from 'common/Scale';
 import S_S_ from './work_panel.scss';
 
 class WorkPanel extends Component {

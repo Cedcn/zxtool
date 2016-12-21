@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { InputNumber, Input, Button, Select, Switch, Icon } from 'antd';
-import Color from '../../common/Color';
-import { getModule } from '../../common/tools';
+import Color from 'common/Color';
+import { getModule } from 'common/tools';
 import S_S_ from './index.scss';
 
 const Option = Select.Option;

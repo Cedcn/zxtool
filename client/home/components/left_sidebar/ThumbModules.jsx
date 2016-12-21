@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import { getModule } from '../../common/tools';
+import { getModule } from 'common/tools';
 
 import S_S_ from './thumb_modules.scss';
 

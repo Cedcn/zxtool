@@ -9,7 +9,7 @@ exports.show = (req, res) => {
 };
 
 exports.create = (req, res, next) => {
-  const username = validator.trim(req.body.username).toLowerCase();
+  const username = validator.trim(req.body.username);
   const password = validator.trim(req.body.password);
 
   const emitter = new EventEmitter();
@@ -46,8 +46,7 @@ exports.create = (req, res, next) => {
     if (err) return next(err);
     createEntity({ username, password: passwordHash }, (err, user) => {
       if (err) return next(err);
-      console.log(user);
-      res.render('users/signup');
+      res.render('/');
     });
   });
 };
