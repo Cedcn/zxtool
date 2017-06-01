@@ -14,7 +14,7 @@ router.get('/preview', (req, res) => {
   res.render('preview');
 });
 
-router.get('/control', isAuthenticated, (req, res) => {
+router.get('/control', (req, res) => {
   req.flash('info', 'hello!');
   res.render('index', { title: 'Control' });
 });
