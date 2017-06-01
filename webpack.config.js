@@ -63,6 +63,7 @@ const config = {
   node: {
     fs: 'empty',
   },
+  cache: false,
 };
 
 if (process.env.NODE_ENV === 'production') {

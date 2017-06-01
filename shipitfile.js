@@ -1,5 +1,5 @@
 const deploy = require('shipit-deploy');
-const npm = require('shipit-npm');
+const npm = require('shipit-yarn');
 
 module.exports = shipit => {
   deploy(shipit);
@@ -15,13 +15,19 @@ module.exports = shipit => {
       shallowClone: true,
     },
     staging: {
-      servers: 'www@cedcn.com',
-      npm: {
+      servers: 'cedcn@cedcn',
+      yarn: {
         remote: true,
         installFlags: ['--production'],
       },
     },
   });
 
-  shipit.task('pwd', () => shipit.remote('pwd'));
+  // shipit.task('pwd', () => shipit.remote('pwd'));
+
+  shipit.on('deployed', () => {
+    const current = shipit.currentPath;
+    shipit.remote(`cd ${current}; NODE_ENV=production npm run dll && webpack -p && node ./bin/www`)
+      .then(res => console.log(res[0].stdout));
+  });
 };

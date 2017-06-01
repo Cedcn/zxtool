@@ -8,7 +8,9 @@
     "dev": "NODE_ENV=development nodemon ./bin/www --ignore client/",
     "build": "NODE_ENV=production npm run dll && webpack -p",
     "deploy": "shipit staging deploy",
-    "dll": "webpack --config webpack.dll.js"
+    "dll": "webpack --config webpack.dll.js",
+    "launch": "",
+    "test": ""
   },
   "author": "",
   "license": "ISC",
@@ -73,6 +75,7 @@
     "reload": "^1.0.1",
     "shipit-deploy": "^2.2.0",
     "shipit-npm": "^0.2.0",
+    "shipit-yarn": "^0.2.0",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2"
   }

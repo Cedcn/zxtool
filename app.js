@@ -26,6 +26,7 @@ if (isDev) {
   app.use(webpackDevMiddleware(compiler, {
     stats: {
       colors: true,
+      noInfo: true,
     },
   }));
   app.use(webpackHotMiddleware(compiler));

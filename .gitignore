@@ -1,5 +1,5 @@
 node_modules
 npm-debug.log
-logs/
+logs/access.log
 public/lib.js
 config/manifest.json
